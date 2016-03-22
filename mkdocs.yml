@@ -1,0 +1,21 @@
+site_name: Pan Docs
+site_description: Documentation and Tutorials for Pan framework.
+site_author: 'nius, campusapp.cn'
+theme: 'material'
+
+repo_name: 'GitHub'
+repo_url: 'https://github.com/campusappcn/Pan'
+
+copyright: 'Copyright (c) 2016 杭州树洞网络科技有限公司'
+
+extra:
+  palette:
+  # http://www.materialui.co/colors
+  # Valid values are: red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey and blue grey. The last three colors can only be used as a primary color.
+    primary: 'indigo'
+    accent: 'light blue'
+
+markdown_extensions:
+  #https://pythonhosted.org/Markdown/extensions/admonition.html
+  - admonition
+  - codehilite(css_class=code)
