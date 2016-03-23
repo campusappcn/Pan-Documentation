@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/", 
-            "text": "\u6b22\u8fce\u6765\u5230Pan!\n\n\nPan\u662f\u4e00\u4e2a\u8f7b\u91cf\u7ea7\u7684\u5b89\u5353MV*\u6846\u67b6\uff0c\u5e2e\u52a9\u68b3\u7406\u5b89\u5353\u7684\u524d\u7aef\u4ee3\u7801\u3002\n\n\n\u4f7f\u7528Pan\u5c06\u5927\u5927\u51cf\u5c11Activity\u7684\u4ee3\u7801\uff0c\u4f7f\u5f97Activity\u7684\u4ee3\u7801\u7f29\u51cf\u5230100\u884c\u751a\u81f350\u884c\u4ee5\u5185\u3002\n\n\nDemo\n\n\npublic\n \nclass\n \nMainActivity\n \nextends\n \nPanFragmentActivity\n \n{\n\n\n    \nMainViewModel\n \nmMainViewModel\n;\n\n\n    \n@Override\n\n    \nprotected\n \nvoid\n \nonCreate\n(\nBundle\n \nsavedInstanceState\n)\n \n{\n\n        \nsuper\n.\nonCreate\n(\nsavedInstanceState\n);\n\n        \nsetContentView\n(\nR\n.\nlayout\n.\nactivity_main\n);\n\n\n        \nmMainViewModel\n \n=\n \nPan\n.\nwith\n(\nthis\n,\n \nMainViewModel\n.\nclass\n)\n\n                \n.\ncontrolledBy\n(\nMainController\n.\nclass\n)\n\n                \n.\ngetViewModel\n()\n\n                \n.\nsetHelloString\n(\nhello Pan!\n)\n\n                \n.\nrender\n();\n \n    \n}\n\n\n    \n//Done! \n\n    \n//No need for more codes!\n\n\n}\n\n\n\n\n\n\n\u8fd8\u7b49\u4ec0\u4e48\uff1f\nGetting Started!\n\n\nMV*\u6a21\u578b", 
+            "text": "\u6b22\u8fce\u6765\u5230Pan!\n\n\nPan\u662f\u4e00\u4e2a\u8f7b\u91cf\u7ea7\u7684\u5b89\u5353MV*\u6846\u67b6\uff0c\u5e2e\u52a9\u68b3\u7406\u5b89\u5353\u7684\u524d\u7aef\u4ee3\u7801\u3002\n\n\n\u4f7f\u7528Pan\u5c06\u5927\u5927\u51cf\u5c11Activity\u7684\u4ee3\u7801\uff0c\u4f7f\u5f97Activity\u7684\u4ee3\u7801\u7f29\u51cf\u5230100\u884c\u751a\u81f350\u884c\u4ee5\u5185\u3002\n\u540c\u65f6\uff0c\u5927\u5927\u63d0\u5347\u754c\u9762\u4ee3\u7801\u7684\u53ef\u590d\u7528\u6027\uff0c\u63d0\u5347\u4ee3\u7801\u7684\u53ef\u7ef4\u62a4\u6027\u3002\n\n\nDemo\n\n\npublic\n \nclass\n \nMainActivity\n \nextends\n \nPanFragmentActivity\n \n{\n\n\n    \nMainViewModel\n \nmMainViewModel\n;\n\n\n    \n@Override\n\n    \nprotected\n \nvoid\n \nonCreate\n(\nBundle\n \nsavedInstanceState\n)\n \n{\n\n        \nsuper\n.\nonCreate\n(\nsavedInstanceState\n);\n\n        \nsetContentView\n(\nR\n.\nlayout\n.\nactivity_main\n);\n\n\n        \nmMainViewModel\n \n=\n \nPan\n.\nwith\n(\nthis\n,\n \nMainViewModel\n.\nclass\n)\n\n                \n.\ncontrolledBy\n(\nMainController\n.\nclass\n)\n\n                \n.\ngetViewModel\n()\n\n                \n.\nsetHelloString\n(\nhello Pan!\n)\n\n                \n.\nrender\n();\n \n    \n}\n\n\n    \n//Done! \n\n    \n//No need for more codes!\n\n\n}\n\n\n\n\n\n\n\u8fd8\u7b49\u4ec0\u4e48\uff1f\nGetting Started!\n\n\nFeatures\n\n\n//TODO\n\n\nMV*\u6a21\u578b\n\n\n//TODO", 
             "title": "Home"
         }, 
         {
             "location": "/#pan", 
-            "text": "Pan\u662f\u4e00\u4e2a\u8f7b\u91cf\u7ea7\u7684\u5b89\u5353MV*\u6846\u67b6\uff0c\u5e2e\u52a9\u68b3\u7406\u5b89\u5353\u7684\u524d\u7aef\u4ee3\u7801\u3002  \u4f7f\u7528Pan\u5c06\u5927\u5927\u51cf\u5c11Activity\u7684\u4ee3\u7801\uff0c\u4f7f\u5f97Activity\u7684\u4ee3\u7801\u7f29\u51cf\u5230100\u884c\u751a\u81f350\u884c\u4ee5\u5185\u3002", 
+            "text": "Pan\u662f\u4e00\u4e2a\u8f7b\u91cf\u7ea7\u7684\u5b89\u5353MV*\u6846\u67b6\uff0c\u5e2e\u52a9\u68b3\u7406\u5b89\u5353\u7684\u524d\u7aef\u4ee3\u7801\u3002  \u4f7f\u7528Pan\u5c06\u5927\u5927\u51cf\u5c11Activity\u7684\u4ee3\u7801\uff0c\u4f7f\u5f97Activity\u7684\u4ee3\u7801\u7f29\u51cf\u5230100\u884c\u751a\u81f350\u884c\u4ee5\u5185\u3002\n\u540c\u65f6\uff0c\u5927\u5927\u63d0\u5347\u754c\u9762\u4ee3\u7801\u7684\u53ef\u590d\u7528\u6027\uff0c\u63d0\u5347\u4ee3\u7801\u7684\u53ef\u7ef4\u62a4\u6027\u3002", 
             "title": "\u6b22\u8fce\u6765\u5230Pan!"
         }, 
         {
@@ -16,9 +16,59 @@
             "title": "Demo"
         }, 
         {
+            "location": "/#features", 
+            "text": "//TODO", 
+            "title": "Features"
+        }, 
+        {
             "location": "/#mv", 
-            "text": "", 
+            "text": "//TODO", 
             "title": "MV*\u6a21\u578b"
+        }, 
+        {
+            "location": "/Components/", 
+            "text": "Components \u7ec4\u4ef6\n\n\nViewModel\u548cPan\u5de5\u5382\n\n\n//TODO\n\n\nActivity\u4e2d\u4f7f\u7528\n\n\nFragment\u4e2d\u4f7f\u7528\n\n\nView\u4e2d\u4f7f\u7528\n\n\nController\uff1aActivity/Fragment\u751f\u547d\u5468\u671f\n\n\n//TODO\n\n\nController\uff1a\u7528\u6237\u4ea4\u4e92\n\n\n//TODO\n\n\nViewModel\u548cController\u7684\u751f\u547d\u5468\u671f", 
+            "title": "Components"
+        }, 
+        {
+            "location": "/Components/#components", 
+            "text": "", 
+            "title": "Components \u7ec4\u4ef6"
+        }, 
+        {
+            "location": "/Components/#viewmodelpan", 
+            "text": "//TODO", 
+            "title": "ViewModel\u548cPan\u5de5\u5382"
+        }, 
+        {
+            "location": "/Components/#activity", 
+            "text": "", 
+            "title": "Activity\u4e2d\u4f7f\u7528"
+        }, 
+        {
+            "location": "/Components/#fragment", 
+            "text": "", 
+            "title": "Fragment\u4e2d\u4f7f\u7528"
+        }, 
+        {
+            "location": "/Components/#view", 
+            "text": "", 
+            "title": "View\u4e2d\u4f7f\u7528"
+        }, 
+        {
+            "location": "/Components/#controlleractivityfragment", 
+            "text": "//TODO", 
+            "title": "Controller\uff1aActivity/Fragment\u751f\u547d\u5468\u671f"
+        }, 
+        {
+            "location": "/Components/#controller", 
+            "text": "//TODO", 
+            "title": "Controller\uff1a\u7528\u6237\u4ea4\u4e92"
+        }, 
+        {
+            "location": "/Components/#viewmodelcontroller", 
+            "text": "", 
+            "title": "ViewModel\u548cController\u7684\u751f\u547d\u5468\u671f"
         }, 
         {
             "location": "/Getting_Started/", 
@@ -54,6 +104,106 @@
             "location": "/Getting_Started/#layoutxml", 
             "text": "\u5bf9\u5e94\u7684\u5e03\u5c40XML:  ?xml version= 1.0  encoding= utf-8 ?  LinearLayout   xmlns:android= http://schemas.android.com/apk/res/android \n               android:orientation= vertical \n               android:layout_width= match_parent \n               android:layout_height= match_parent \n\n     Button \n         android:id= @+id/hello \n         android:text= Hello World! \n         android:layout_width= wrap_content \n         android:layout_height= wrap_content /  /LinearLayout", 
             "title": "layout.xml"
+        }, 
+        {
+            "location": "/ViewHolder\u6a21\u5f0f\u548c\u5d4c\u5957\u4f7f\u7528/", 
+            "text": "ViewHolder \u6a21\u5f0f\n\n\nListView\uff0cAdapter\u548cViewModel\u7684\u5d4c\u5957\n\n\n//TODO\n\n\nRecyclerViewModel\n\n\n//TODO", 
+            "title": "ViewHolder\u6a21\u5f0f\u548c\u5d4c\u5957\u4f7f\u7528"
+        }, 
+        {
+            "location": "/ViewHolder\u6a21\u5f0f\u548c\u5d4c\u5957\u4f7f\u7528/#viewholder", 
+            "text": "", 
+            "title": "ViewHolder \u6a21\u5f0f"
+        }, 
+        {
+            "location": "/ViewHolder\u6a21\u5f0f\u548c\u5d4c\u5957\u4f7f\u7528/#listviewadapterviewmodel", 
+            "text": "//TODO", 
+            "title": "ListView\uff0cAdapter\u548cViewModel\u7684\u5d4c\u5957"
+        }, 
+        {
+            "location": "/ViewHolder\u6a21\u5f0f\u548c\u5d4c\u5957\u4f7f\u7528/#recyclerviewmodel", 
+            "text": "//TODO", 
+            "title": "RecyclerViewModel"
+        }, 
+        {
+            "location": "/\u590d\u7528_\u7ee7\u627f\u548c\u4ee3\u7406/", 
+            "text": "\u590d\u7528\u7684\u8bbe\u8ba1\u6a21\u5f0f\n\n\nViewModel\u7ee7\u627f\u548cXml\u7ee7\u627f\n\n\n//TODO\n\n\nController\u7684\u7ee7\u627f\n\n\n//TODO\n\n\nViewModel\u4ee3\u7406\n\n\n//TODO", 
+            "title": "\u590d\u7528 \u7ee7\u627f\u548c\u4ee3\u7406"
+        }, 
+        {
+            "location": "/\u590d\u7528_\u7ee7\u627f\u548c\u4ee3\u7406/#_1", 
+            "text": "", 
+            "title": "\u590d\u7528\u7684\u8bbe\u8ba1\u6a21\u5f0f"
+        }, 
+        {
+            "location": "/\u590d\u7528_\u7ee7\u627f\u548c\u4ee3\u7406/#viewmodelxml", 
+            "text": "//TODO", 
+            "title": "ViewModel\u7ee7\u627f\u548cXml\u7ee7\u627f"
+        }, 
+        {
+            "location": "/\u590d\u7528_\u7ee7\u627f\u548c\u4ee3\u7406/#controller", 
+            "text": "//TODO", 
+            "title": "Controller\u7684\u7ee7\u627f"
+        }, 
+        {
+            "location": "/\u590d\u7528_\u7ee7\u627f\u548c\u4ee3\u7406/#viewmodel", 
+            "text": "//TODO", 
+            "title": "ViewModel\u4ee3\u7406"
+        }, 
+        {
+            "location": "/\u5e38\u7528\u7684ViewModel\u57fa\u7c7b/", 
+            "text": "\u5e38\u7528\u7684ViewModel\u57fa\u7c7b\n\n\nGeneralViewModel\n\n\n//TODO\n\n\nAutoRenderViewModel\n\n\n//TODO", 
+            "title": "\u5e38\u7528\u7684ViewModel\u57fa\u7c7b"
+        }, 
+        {
+            "location": "/\u5e38\u7528\u7684ViewModel\u57fa\u7c7b/#viewmodel", 
+            "text": "", 
+            "title": "\u5e38\u7528\u7684ViewModel\u57fa\u7c7b"
+        }, 
+        {
+            "location": "/\u5e38\u7528\u7684ViewModel\u57fa\u7c7b/#generalviewmodel", 
+            "text": "//TODO", 
+            "title": "GeneralViewModel"
+        }, 
+        {
+            "location": "/\u5e38\u7528\u7684ViewModel\u57fa\u7c7b/#autorenderviewmodel", 
+            "text": "//TODO", 
+            "title": "AutoRenderViewModel"
+        }, 
+        {
+            "location": "/\u62d3\u5c55_\u63d2\u4ef6\u7cfb\u7edf/", 
+            "text": "\u63d2\u4ef6\u7cfb\u7edf\n\n\nEventBus\u63d2\u4ef6\n\n\n//TODO\n\n\n\u81ea\u5b9a\u4e49\u63d2\u4ef6\n\n\n//TODO", 
+            "title": "\u62d3\u5c55 \u63d2\u4ef6\u7cfb\u7edf"
+        }, 
+        {
+            "location": "/\u62d3\u5c55_\u63d2\u4ef6\u7cfb\u7edf/#_1", 
+            "text": "", 
+            "title": "\u63d2\u4ef6\u7cfb\u7edf"
+        }, 
+        {
+            "location": "/\u62d3\u5c55_\u63d2\u4ef6\u7cfb\u7edf/#eventbus", 
+            "text": "//TODO", 
+            "title": "EventBus\u63d2\u4ef6"
+        }, 
+        {
+            "location": "/\u62d3\u5c55_\u63d2\u4ef6\u7cfb\u7edf/#_2", 
+            "text": "//TODO", 
+            "title": "\u81ea\u5b9a\u4e49\u63d2\u4ef6"
+        }, 
+        {
+            "location": "/\u62d3\u5c55_\u8ba2\u5236ViewModel\u57fa\u7c7b/", 
+            "text": "MVP\nMVVM: ViewModel\u7684\u5f00\u653e\u548c\u8ba2\u5236\n\n\n\u901a\u8fc7\u8ba2\u5236ViewModel\uff0c\u81ea\u7531\u9009\u62e9MVP\u548cMVVM\n\n\n//TODO", 
+            "title": "\u62d3\u5c55 \u8ba2\u5236ViewModel\u57fa\u7c7b"
+        }, 
+        {
+            "location": "/\u62d3\u5c55_\u8ba2\u5236ViewModel\u57fa\u7c7b/#mvpmvvm-viewmodel", 
+            "text": "", 
+            "title": "MVP&amp;MVVM: ViewModel\u7684\u5f00\u653e\u548c\u8ba2\u5236"
+        }, 
+        {
+            "location": "/\u62d3\u5c55_\u8ba2\u5236ViewModel\u57fa\u7c7b/#viewmodelmvpmvvm", 
+            "text": "//TODO", 
+            "title": "\u901a\u8fc7\u8ba2\u5236ViewModel\uff0c\u81ea\u7531\u9009\u62e9MVP\u548cMVVM"
         }
     ]
 }

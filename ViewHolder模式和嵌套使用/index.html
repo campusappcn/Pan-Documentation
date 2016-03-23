@@ -9,10 +9,8 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
       
-        <title>Pan Docs - Documentation and Tutorials for Pan framework.</title>
+        <title>ViewHolder模式和嵌套使用 - Pan Docs</title>
       
-      
-        <meta name="description" content="Documentation and Tutorials for Pan framework.">
       
       
       
@@ -21,33 +19,33 @@
     
     <meta property="og:url" content="None">
     <meta property="og:title" content="Pan Docs">
-    <meta property="og:image" content="None/./">
+    <meta property="og:image" content="None/../">
     <meta name="apple-mobile-web-app-title" content="Pan Docs">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     
-    <link rel="shortcut icon" type="image/x-icon" href="./None">
-    <link rel="icon" type="image/x-icon" href="./None">
+    <link rel="shortcut icon" type="image/x-icon" href="../None">
+    <link rel="icon" type="image/x-icon" href="../None">
     <style>
       @font-face {
       	font-family: 'Icon';
-      	src: url('./assets/fonts/icon.eot?52m981');
-      	src: url('./assets/fonts/icon.eot?#iefix52m981')
+      	src: url('../assets/fonts/icon.eot?52m981');
+      	src: url('../assets/fonts/icon.eot?#iefix52m981')
                format('embedded-opentype'),
-      		   url('./assets/fonts/icon.woff?52m981')
+      		   url('../assets/fonts/icon.woff?52m981')
                format('woff'),
-      		   url('./assets/fonts/icon.ttf?52m981')
+      		   url('../assets/fonts/icon.ttf?52m981')
                format('truetype'),
-      		   url('./assets/fonts/icon.svg?52m981#icon')
+      		   url('../assets/fonts/icon.svg?52m981#icon')
                format('svg');
       	font-weight: normal;
       	font-style: normal;
       }
     </style>
-    <link rel="stylesheet" href="./assets/stylesheets/application-54f87043f3.css">
+    <link rel="stylesheet" href="../assets/stylesheets/application-54f87043f3.css">
     
-      <link rel="stylesheet" href="./assets/stylesheets/palettes-05ab2406df.css">
+      <link rel="stylesheet" href="../assets/stylesheets/palettes-05ab2406df.css">
     
     
       
@@ -64,7 +62,7 @@
       </style>
     
     
-    <script src="./assets/javascripts/modernizr-4ab42b99fd.js"></script>
+    <script src="../assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
   </head>
   
@@ -96,7 +94,7 @@
             
           </span>
         
-        Pan Docs
+        ViewHolder模式和嵌套使用
       </div>
     </div>
     
@@ -166,8 +164,35 @@
           
             
   <li>
-    <a class="current" title="Home" href=".">
+    <a class="" title="Home" href="..">
       Home
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="Components" href="../Components/">
+      Components
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="Getting Started" href="../Getting_Started/">
+      Getting Started
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="current" title="ViewHolder模式和嵌套使用" href="./">
+      ViewHolder模式和嵌套使用
     </a>
     
       
@@ -177,20 +202,14 @@
         <ul>
           
             <li class="anchor">
-              <a title="Demo" href="#demo">
-                Demo
+              <a title="ListView，Adapter和ViewModel的嵌套" href="#listviewadapterviewmodel">
+                ListView，Adapter和ViewModel的嵌套
               </a>
             </li>
           
             <li class="anchor">
-              <a title="Features" href="#features">
-                Features
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="MV*模型" href="#mv">
-                MV*模型
+              <a title="RecyclerViewModel" href="#recyclerviewmodel">
+                RecyclerViewModel
               </a>
             </li>
           
@@ -202,34 +221,7 @@
           
             
   <li>
-    <a class="" title="Components" href="Components/">
-      Components
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="Getting Started" href="Getting_Started/">
-      Getting Started
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="ViewHolder模式和嵌套使用" href="ViewHolder模式和嵌套使用/">
-      ViewHolder模式和嵌套使用
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="复用 继承和代理" href="复用_继承和代理/">
+    <a class="" title="复用 继承和代理" href="../复用_继承和代理/">
       复用 继承和代理
     </a>
     
@@ -238,7 +230,7 @@
           
             
   <li>
-    <a class="" title="常用的ViewModel基类" href="常用的ViewModel基类/">
+    <a class="" title="常用的ViewModel基类" href="../常用的ViewModel基类/">
       常用的ViewModel基类
     </a>
     
@@ -247,7 +239,7 @@
           
             
   <li>
-    <a class="" title="拓展 插件系统" href="拓展_插件系统/">
+    <a class="" title="拓展 插件系统" href="../拓展_插件系统/">
       拓展 插件系统
     </a>
     
@@ -256,7 +248,7 @@
           
             
   <li>
-    <a class="" title="拓展 订制ViewModel基类" href="拓展_订制ViewModel基类/">
+    <a class="" title="拓展 订制ViewModel基类" href="../拓展_订制ViewModel基类/">
       拓展 订制ViewModel基类
     </a>
     
@@ -273,37 +265,10 @@
       <article class="article">
         <div class="wrapper">
           
-          <h1 id="pan">欢迎来到Pan!</h1>
-<p>Pan是一个轻量级的安卓MV*框架，帮助梳理安卓的前端代码。</p>
-<p>使用Pan将大大减少Activity的代码，使得Activity的代码缩减到100行甚至50行以内。
-同时，大大提升界面代码的可复用性，提升代码的可维护性。</p>
-<h2 id="demo">Demo</h2>
-<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">PanFragmentActivity</span> <span class="o">{</span>
-
-    <span class="n">MainViewModel</span> <span class="n">mMainViewModel</span><span class="o">;</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
-
-        <span class="n">mMainViewModel</span> <span class="o">=</span> <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">MainViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">controlledBy</span><span class="o">(</span><span class="n">MainController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">getViewModel</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">setHelloString</span><span class="o">(</span><span class="s">&quot;hello Pan!&quot;</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">render</span><span class="o">();</span> 
-    <span class="o">}</span>
-
-    <span class="c1">//Done! </span>
-    <span class="c1">//No need for more codes!</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>还等什么？<a href="./Getting_Started">Getting Started!</a></p>
-<h2 id="features">Features</h2>
+          <h1 id="viewholder">ViewHolder 模式</h1>
+<h2 id="listviewadapterviewmodel">ListView，Adapter和ViewModel的嵌套</h2>
 <p>//TODO</p>
-<h2 id="mv">MV*模型</h2>
+<h2 id="recyclerviewmodel">RecyclerViewModel</h2>
 <p>//TODO</p>
           <aside class="copyright" role="note">
             
@@ -323,17 +288,33 @@
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
+        <a href="../Getting_Started/" title="Getting Started">
+          <span class="direction">
+            Previous
+          </span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                Getting Started
+              </div>
+            </div>
+          </div>
+        </a>
+      
     </div>
     <div class="next">
       
-        <a href="Components/" title="Components">
+        <a href="../复用_继承和代理/" title="复用 继承和代理">
           <span class="direction">
             Next
           </span>
           <div class="page">
             <div class="stretch">
               <div class="title">
-                Components
+                复用 继承和代理
               </div>
             </div>
             <div class="button button-next" role="button" aria-label="Next">
@@ -359,10 +340,10 @@
       </div>
     </main>
     <script>
-      var base_url = '.';
+      var base_url = '..';
       var repo_id  = 'campusappcn/Pan';
     </script>
-    <script src="./assets/javascripts/application-997097ee0c.js"></script>
+    <script src="../assets/javascripts/application-997097ee0c.js"></script>
     
     
   </body>

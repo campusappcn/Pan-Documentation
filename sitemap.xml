@@ -4,7 +4,15 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2016-03-22</lastmod>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/Components/</loc>
+     <lastmod>2016-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +20,47 @@
     
     <url>
      <loc>None/Getting_Started/</loc>
-     <lastmod>2016-03-22</lastmod>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/ViewHolder模式和嵌套使用/</loc>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/复用_继承和代理/</loc>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/常用的ViewModel基类/</loc>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/拓展_插件系统/</loc>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/拓展_订制ViewModel基类/</loc>
+     <lastmod>2016-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
