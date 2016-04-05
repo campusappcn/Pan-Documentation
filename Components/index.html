@@ -62,6 +62,8 @@
       </style>
     
     
+      <link rel="stylesheet" href="../">
+    
     <script src="../assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
   </head>
@@ -320,12 +322,12 @@
 </pre></div>
 
 
-<p>render方法负责完成渲染操作，而rootView是当前渲染的最顶层的View。ViewModel的基础实现是<code>GeneralViewModel</code>。</p>
-<p><code>GeneralViewModel</code>提供了以下功能：</p>
+<p>render方法负责完成渲染操作，而rootView是当前渲染的最顶层的View。ViewModel的基础实现是<a href="http://localhost:8000/javadoc/cn/campusapp/pan/GeneralViewModel.html">GeneralViewModel</a>。</p>
+<p><a href="http://localhost:8000/javadoc/cn/campusapp/pan/GeneralViewModel.html">GeneralViewModel</a>提供了以下功能：</p>
 <ol>
-<li><code>@Bind</code>注解自动注入View。（底层由<a href="http://jakewharton.github.io/butterknife/">Butterknife</a>支持）</li>
+<li>@Bind注解自动注入View。（底层由<a href="http://jakewharton.github.io/butterknife/">Butterknife</a>支持）</li>
 <li>持有当前的Context，一定有Activity的引用，如果在Fragment中，则有Fragment的引用</li>
-<li>支持绑定一个<code>GeneralController</code></li>
+<li>支持绑定一个<a href="../javadoc/cn/campusapp/pan/GeneralController.html">GeneralController</a></li>
 </ol>
 <p>一般来说，ViewModel的实例化可以通过Pan工厂来完成，只需告诉Pan工厂使用何类型的ViewModel，Pan工厂会负责实例化ViewModel。当然，也可以自行实例化ViewModel，这在内部类的场景时可以使用，然后将ViewModel对象传入Pan工厂，以进一步绑定View和Controller。</p>
 <h2 id="panpanactivity">Pan：PanActivity中使用</h2>
@@ -343,7 +345,7 @@
 
 
 <p>在Activity中，需要在onCreate中完成工厂实例化过程。直接使用无参数的getViewModel()工厂方法获得ViewModel实例。此时，getRootView()返回的是Activity的decorView，即整个页面的根View。</p>
-<p>注意，这里要求Activity实现LifecycleObserved接口，可以通过直接继承<code>PanActivity</code>完成，也可以在自定义的Activity中，仿写<code>PanActivity</code>的代码并实现LifecycleObserved接口。参考<a href="#panactivitypanfragment">自定义PanActivity/PanFragment</a>。</p>
+<p>注意，这里要求Activity实现LifecycleObserved接口，可以通过直接继承<a href="http://localhost:8000/javadoc/cn/campusapp/pan/PanActivity.html">PanActivity</a>完成，也可以在自定义的Activity中，仿写<a href="http://localhost:8000/javadoc/cn/campusapp/pan/PanActivity.html">PanActivity</a>的代码并实现<a href="http://localhost:8000/javadoc/cn/campusapp/pan/lifecycle/LifecycleObserved.html">LifecycleObserved</a>接口。参考<a href="#panactivitypanfragment">自定义PanActivity/PanFragment</a>。</p>
 <h2 id="panpanfragmentadapter">Pan：PanFragment中使用（Adapter同理）</h2>
 <div class="code"><pre><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="n">View</span> <span class="nf">onCreateView</span><span class="o">(</span><span class="n">LayoutInflater</span> <span class="n">inflater</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">container</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
@@ -363,8 +365,8 @@
 </pre></div>
 
 
-<p>在Fragment的onCreateView方法中，完成工厂的实例化过程。Fragment的onCreateView需要返回一个新创建的View，因此，Pan工厂在创建ViewModel的同时，可以完成创建View的过程。使用<code>getViewModel(ViewGroup, View, attach)</code>的重载，可以像调用inflat方法一样，创建一个新的View。而这个View的Xml，则来自于MainViewModel的<code>@Xml</code>注解。</p>
-<p>注意，这里要求Fragment实现LifecycleObserved接口，可以通过直接继承<code>PanFragment</code>完成，也可以在自定义的Fragment中，仿写<code>PanFragment</code>的代码并实现LifecycleObserved接口。参考<a href="#panactivitypanfragment">自定义PanActivity/PanFragment</a>。</p>
+<p>在Fragment的onCreateView方法中，完成工厂的实例化过程。Fragment的onCreateView需要返回一个新创建的View，因此，Pan工厂在创建ViewModel的同时，可以完成创建View的过程。使用<code>getViewModel(ViewGroup, View, attach)</code>的重载，可以像调用inflat方法一样，创建一个新的View。而这个View的Xml，则来自于MainViewModel的<a href="http://localhost:8000/javadoc/cn/campusapp/pan/annotaions/Xml.html">@Xml</a>注解。</p>
+<p>注意，这里要求Fragment实现<a href="http://localhost:8000/javadoc/cn/campusapp/pan/lifecycle/LifecycleObserved.html">LifecycleObserved</a>接口，可以通过直接继承<a href="http://localhost:8000/javadoc/cn/campusapp/pan/PanFragment.html">PanFramgent</a>完成，也可以在自定义的Fragment中，仿写<a href="http://localhost:8000/javadoc/cn/campusapp/pan/PanFragment.html">PanFramgent</a>的代码并实现<a href="http://localhost:8000/javadoc/cn/campusapp/pan/lifecycle/LifecycleObserved.html">LifecycleObserved</a>接口。参考<a href="#panactivitypanfragment">自定义PanActivity/PanFragment</a>。</p>
 <p>安卓中，界面部件的重要场景是在ListView的Adapter中，或者RecyclerView的场景中，在这些Adapter中，也需要实例化新的View，以及使用ViewHolder模式重用现有的View。<strong>Pan框架原生支持ViewHolder模式，使用者无需再自己保存View的实例。</strong>因此，在Adapter的getView方法中，可以直接使用本方法。即：</p>
 <div class="code"><pre><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
@@ -452,7 +454,7 @@
 <p><img style="max-width: 60%;" src="https://img.alicdn.com/imgextra/i4/56380417/TB2qwPDmpXXXXceXpXXXXXXXXXX_!!56380417.png" alt="Pan工厂的执行顺序"></p>
 <h2 id="panactivitypanfragment">自定义PanActivity/PanFragment</h2>
 <p>由于Java的单继承特性，如果某个Activity已经继承了某个自定义的Activity，或者某个类库的Activity，将无法直接继承PanActivity/PanFragment。</p>
-<p>此时，开发者可以继承基类Activity，并实现<code>LifecycleObserved</code>接口，同时，将PanActivity中的代码，直接拷贝到CustomActivity中，即可使用。Fragment同理。</p>
+<p>此时，开发者可以继承基类Activity，并实现<a href="http://localhost:8000/javadoc/cn/campusapp/pan/lifecycle/LifecycleObserved.html">LifecycleObserved</a>接口，同时，将PanActivity中的代码，直接拷贝到CustomActivity中，即可使用。Fragment同理。</p>
 <div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PanCustomActivityBase</span> <span class="kd">extends</span> <span class="n">CustomActivity</span> <span class="kd">implements</span> <span class="n">LifecycleObserved</span><span class="o">{</span>
 
     <span class="c1">//拷贝PanActivity的所有源码到这里。</span>
@@ -533,6 +535,8 @@
       var repo_id  = 'campusappcn/Pan';
     </script>
     <script src="../assets/javascripts/application-997097ee0c.js"></script>
+    
+      <script src="../javadoc/script.js"></script>
     
     
   </body>
