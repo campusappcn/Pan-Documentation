@@ -1,6 +1,7 @@
 site_name: Pan Docs
 site_description: Documentation and Tutorials for Pan framework.
 site_author: 'nius, campusapp.cn'
+site_url: 'http://blog.campusapp.cn/Pan-Documentation/'
 theme: 'material'
 
 repo_name: 'GitHub'
