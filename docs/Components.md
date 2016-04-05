@@ -1,5 +1,7 @@
 # Components 组件
 
+详细介绍Pan的组成和使用方法。
+
 ## ViewModel和Pan工厂
 
 ViewModel是整个框架中的核心，接口定义如下：
@@ -28,6 +30,8 @@ render方法负责完成渲染操作，而rootView是当前渲染的最顶层的
 ```Java
 @Override
 protected void onCreate(Bundle savedInstanceState){
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
     MainViewModel vm = Pan.with(this, MainViewModel.class)
         .getViewModel(); //直接使用Activity的decorView作为rootView
@@ -110,7 +114,12 @@ Controller可以通过$vm直接获取到绑定的ViewModel对象，从而对其�
 Controller的一个核心功能是监控Activity/Fragment的生命周期。Controller需要得到某个周期的回调，直接通过实现与生命周期同名的接口即可，例如：
 
 ```Java
-public class MainController extends GeneralController<MainViewModel> implements OnResume, OnVisible, OnRestart{
+public class MainController extends GeneralController<MainViewModel> 
+
+        //实现接口以监听
+	    implements OnResume, 
+	               OnVisible, 
+	               OnRestart{
 
     @Override protected void bindEvents() {
     }
