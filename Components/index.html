@@ -308,6 +308,7 @@
         <div class="wrapper">
           
           <h1 id="components">Components 组件</h1>
+<p>详细介绍Pan的组成和使用方法。</p>
 <h2 id="viewmodelpan">ViewModel和Pan工厂</h2>
 <p>ViewModel是整个框架中的核心，接口定义如下：</p>
 <div class="code"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ViewModel</span> <span class="o">{</span>
@@ -330,6 +331,8 @@
 <h2 id="panpanactivity">Pan：PanActivity中使用</h2>
 <div class="code"><pre><span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">){</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
 
     <span class="n">MainViewModel</span> <span class="n">vm</span> <span class="o">=</span> <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">MainViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
         <span class="o">.</span><span class="na">getViewModel</span><span class="o">();</span> <span class="c1">//直接使用Activity的decorView作为rootView</span>
@@ -396,7 +399,12 @@
 <p>Controller可以通过$vm直接获取到绑定的ViewModel对象，从而对其进行事件的绑定</p>
 <h2 id="controlleractivityfragment">Controller：Activity/Fragment生命周期</h2>
 <p>Controller的一个核心功能是监控Activity/Fragment的生命周期。Controller需要得到某个周期的回调，直接通过实现与生命周期同名的接口即可，例如：</p>
-<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="kd">extends</span> <span class="n">GeneralController</span><span class="o">&lt;</span><span class="n">MainViewModel</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">OnResume</span><span class="o">,</span> <span class="n">OnVisible</span><span class="o">,</span> <span class="n">OnRestart</span><span class="o">{</span>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="kd">extends</span> <span class="n">GeneralController</span><span class="o">&lt;</span><span class="n">MainViewModel</span><span class="o">&gt;</span> 
+
+        <span class="c1">//实现接口以监听</span>
+        <span class="kd">implements</span> <span class="n">OnResume</span><span class="o">,</span> 
+                   <span class="n">OnVisible</span><span class="o">,</span> 
+                   <span class="n">OnRestart</span><span class="o">{</span>
 
     <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">bindEvents</span><span class="o">()</span> <span class="o">{</span>
     <span class="o">}</span>

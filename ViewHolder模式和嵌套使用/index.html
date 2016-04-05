@@ -266,10 +266,111 @@
         <div class="wrapper">
           
           <h1 id="viewholder">ViewHolder 模式</h1>
+<p>Pan原生实现了ViewHolder模式，开发者无需自行绑定ViewHolder。</p>
 <h2 id="listviewadapterviewmodel">ListView，Adapter和ViewModel的嵌套</h2>
-<p>//TODO</p>
+<p>在ListView或GridView等可重复布局中，都需要使用到Adapter，一般来说，通过继承BaseAdapter并实现相应方法来完成。</p>
+<p>使用ListView的界面中，界面实际上被分为了两层：</p>
+<ol>
+<li>列表层，即ListView，以及与ListView同级的其他View，例如list.xml</li>
+<li>Item层，即ListView中的每一个元素，同时，可能还有headerView和footerView以及其他自定义的View，同处这一层，例如item.xml</li>
+</ol>
+<p>这两层基本没有关系，只通过Adapter建立了微弱的联系，Item其实并不需要知道自己身处在哪个ListView中，而ListView也不太关心底层的Item的具体实现。因此，ViewModel也可以同样使用两层，以明确这种弱关系，同时解耦两层的渲染逻辑。</p>
+<p>首先是ListViewModel，主要负责ListView层面的渲染，同时在Adapter中使用ItemViewModel把Item的渲染代理出去。</p>
+<div class="code"><pre><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">list</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListViewModel</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span><span class="o">{</span>
+
+    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">list</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">ListView</span> <span class="n">vListView</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">mDatas</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">BaseAdapter</span> <span class="n">mAdapter</span><span class="o">;</span>
+
+    <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onInit</span><span class="o">(){</span>
+        <span class="n">vListView</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">mAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListViewAdapter</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(){</span>
+        <span class="n">mAdapter</span><span class="o">.</span><span class="na">notifyDatasetChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">ListViewModel</span> <span class="nf">setData</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">datas</span><span class="o">){</span>
+        <span class="n">mDatas</span> <span class="o">=</span> <span class="n">datas</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">class</span> <span class="nc">ListViewAdapter</span> <span class="kd">extends</span> <span class="n">BaseAdapter</span><span class="o">{</span>
+        <span class="c1">//...</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">){</span>
+
+            <span class="c1">//两层ViewModel只有非常弱的联系</span>
+            <span class="k">return</span> <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">getActivity</span><span class="o">(),</span> <span class="n">ItemViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">getViewModel</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">convertView</span><span class="o">,</span> <span class="kc">false</span><span class="o">).</span>
+                <span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">datas</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">getRootView</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>其次是ItemViewModel，ItemViewModel并不需要知道自己被用在了何处，可以是Activity中某个部分使用了，也可能是Adapter中使用了，但ItemViewModel并不关心。</p>
+<div class="code"><pre><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemViewModel</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span><span class="o">{</span>
+
+    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">text</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">TextView</span> <span class="n">vTextView</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">Data</span> <span class="n">mData</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">ItemViewModel</span> <span class="nf">setData</span><span class="o">(</span><span class="n">Data</span> <span class="n">data</span><span class="o">){</span>
+        <span class="n">mData</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(){</span>
+        <span class="n">vTextView</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">mData</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+
+
+<p>最后，在Activity中的调用，也很简洁，只需要绑定ListViewModel。</p>
+<div class="code"><pre><span class="c1">//在Activity中</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstance</span><span class="o">){</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+    <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">ListViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">controlledBy</span><span class="o">(</span><span class="n">ListViewController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">getViewModel</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+
+
 <h2 id="recyclerviewmodel">RecyclerViewModel</h2>
-<p>//TODO</p>
+<p>RecyclerViewModel用于RecyclerView中，由于Java的单继承，RecyclerView.Adapter需要返回一个ViewHolder的子类对象，因此，这里使用RecyclerViewModel作为基类以替换GeneralViewModel。其他用法和ListView完全一致。</p>
+<div class="code"><pre><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RecyclerItemViewModel</span> <span class="kd">extends</span> <span class="n">RecyclerViewModel</span><span class="o">{</span>
+    <span class="c1">//...</span>
+<span class="o">}</span>
+
+<span class="c1">//Adapter</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RecyclerViewAdapter</span> <span class="kd">extends</span> <span class="n">RecyclerView</span><span class="o">.</span><span class="na">Adapter</span><span class="o">&lt;</span><span class="n">RecyclerItemViewModel</span><span class="o">&gt;{</span>
+
+    <span class="nd">@Override</span> <span class="n">RecyclerItemViewModel</span> <span class="nf">onCreateViewHoler</span><span class="o">(</span><span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">viewType</span><span class="o">){</span>
+        <span class="k">return</span> <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">getLifecycleObserved</span><span class="o">(),</span> <span class="n">RecyclerItemViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">getViewModel</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kt">void</span> <span class="nf">onBindViewHolder</span><span class="o">(</span><span class="n">RecyclerItemViewModel</span> <span class="n">holder</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">){</span>
+        <span class="c1">//holder.setData(...)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
           <aside class="copyright" role="note">
             
               Copyright (c) 2016 杭州树洞网络科技有限公司 &ndash;
