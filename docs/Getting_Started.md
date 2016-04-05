@@ -18,7 +18,7 @@
 首先，是轻量化的Activity代码，主要通过Pan的工厂方法with，得到ViewModel的实例，绑定ViewModel和Controller到Activity上。工厂方法with有很多重载，也可以传入使用实例化好的对象。
 
 ```Java
-public class MainActivity extends PanFragmentActivity {
+public class MainActivity extends PanActivity {
 
     MainViewModel mMainViewModel;
 
