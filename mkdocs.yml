@@ -19,3 +19,7 @@ markdown_extensions:
   #https://pythonhosted.org/Markdown/extensions/admonition.html
   - admonition
   - codehilite(css_class=code)
+
+#防止javadoc的css被合并
+extra_css:
+  - ''

@@ -9,7 +9,7 @@
 	}
 
 	dependencies {
-        compile 'com.github.campusappcn:Pan:0.2.2'
+        compile 'com.github.campusappcn:Pan:0.3.0'
 	}
 ```
 
@@ -18,7 +18,7 @@
 首先，是轻量化的Activity代码，主要通过Pan的工厂方法with，得到ViewModel的实例，绑定ViewModel和Controller到Activity上。工厂方法with有很多重载，也可以传入使用实例化好的对象。
 
 ```Java
-public class MainActivity extends PanActivity {
+public class MainActivity extends PanActivity {  //需要继承PanActivity，也可以自定义，见components章节
 
     MainViewModel mMainViewModel;
 

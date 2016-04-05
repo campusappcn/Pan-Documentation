@@ -9,7 +9,7 @@ Pan是一个轻量级的安卓MV*框架，帮助梳理安卓的前端代码。
 
 
 ```Java
-public class MainActivity extends PanFragmentActivity {
+public class MainActivity extends PanActivity {
 
     MainViewModel mMainViewModel;
 
