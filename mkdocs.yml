@@ -24,3 +24,15 @@ markdown_extensions:
 #防止javadoc的css被合并
 extra_css:
   - ''
+
+pages:
+  - Home: index.md
+  - Getting_Started: Getting_Started.md
+  - Components: Components.md
+  - 复用：继承和委托: 复用_继承和委托.md
+  - ViewHolder模式和嵌套使用: ViewHolder模式和嵌套使用.md
+  - 常用的ViewModel实现类: 常用的ViewModel实现类.md
+  - 插件系统: 拓展_插件系统.md
+  - MVVM和MVP: MVVM_MVP.md
+  - 集成Data-Binding: 集成Data-Binding.md
+  - 常见问题: 常见问题.md

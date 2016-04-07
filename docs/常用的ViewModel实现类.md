@@ -21,7 +21,7 @@ Pan.with(getActivity(), MainViewModel.class)
 
 ## AutoRenderViewModel
 
-[AutoRenderViewModel]()也是一个常用的基类，其特点是会自动调用render进行渲染。自动渲染的时机如下：
+[AutoRenderViewModel](javadoc/cn/campusapp/pan/autorender/AutoRenderViewModel.html)也是一个常用的基类，其特点是会自动调用render进行渲染。自动渲染的时机如下：
 
 1. Activity的OnResume（和Fragment的OnResume其实是同时机）
 2. Fragment的setVisibleHint(true)的情况，即OnVisible接口方法得到参数true
