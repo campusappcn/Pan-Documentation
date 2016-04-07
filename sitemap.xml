@@ -11,14 +11,6 @@
 
     
     <url>
-     <loc>http://blog.campusapp.cn/Pan-Documentation//Components/</loc>
-     <lastmod>2016-04-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
      <loc>http://blog.campusapp.cn/Pan-Documentation//Getting_Started/</loc>
      <lastmod>2016-04-07</lastmod>
      <changefreq>daily</changefreq>
@@ -27,7 +19,7 @@
 
     
     <url>
-     <loc>http://blog.campusapp.cn/Pan-Documentation//ViewHolder模式和嵌套使用/</loc>
+     <loc>http://blog.campusapp.cn/Pan-Documentation//Components/</loc>
      <lastmod>2016-04-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -36,6 +28,14 @@
     
     <url>
      <loc>http://blog.campusapp.cn/Pan-Documentation//复用_继承和委托/</loc>
+     <lastmod>2016-04-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://blog.campusapp.cn/Pan-Documentation//ViewHolder模式和嵌套使用/</loc>
      <lastmod>2016-04-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -59,7 +59,23 @@
 
     
     <url>
-     <loc>http://blog.campusapp.cn/Pan-Documentation//拓展_订制ViewModel基类/</loc>
+     <loc>http://blog.campusapp.cn/Pan-Documentation//MVVM_MVP/</loc>
+     <lastmod>2016-04-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://blog.campusapp.cn/Pan-Documentation//集成Data-Binding/</loc>
+     <lastmod>2016-04-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://blog.campusapp.cn/Pan-Documentation//常见问题/</loc>
      <lastmod>2016-04-07</lastmod>
      <changefreq>daily</changefreq>
     </url>

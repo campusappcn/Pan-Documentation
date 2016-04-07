@@ -9,47 +9,45 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
       
-        <title>Pan Docs - Documentation and Tutorials for Pan framework.</title>
+        <title>集成Data-Binding - Pan Docs</title>
       
       
-        <meta name="description" content="Documentation and Tutorials for Pan framework.">
       
-      
-        <link rel="canonical" href="http://blog.campusapp.cn/Pan-Documentation/">
+        <link rel="canonical" href="http://blog.campusapp.cn/Pan-Documentation/集成Data-Binding/">
       
       
         <meta name="author" content="nius, campusapp.cn">
       
     
-    <meta property="og:url" content="http://blog.campusapp.cn/Pan-Documentation/">
+    <meta property="og:url" content="http://blog.campusapp.cn/Pan-Documentation/集成Data-Binding/">
     <meta property="og:title" content="Pan Docs">
-    <meta property="og:image" content="http://blog.campusapp.cn/Pan-Documentation//./">
+    <meta property="og:image" content="http://blog.campusapp.cn/Pan-Documentation/集成Data-Binding//../">
     <meta name="apple-mobile-web-app-title" content="Pan Docs">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     
-    <link rel="shortcut icon" type="image/x-icon" href="./None">
-    <link rel="icon" type="image/x-icon" href="./None">
+    <link rel="shortcut icon" type="image/x-icon" href="../None">
+    <link rel="icon" type="image/x-icon" href="../None">
     <style>
       @font-face {
       	font-family: 'Icon';
-      	src: url('./assets/fonts/icon.eot?52m981');
-      	src: url('./assets/fonts/icon.eot?#iefix52m981')
+      	src: url('../assets/fonts/icon.eot?52m981');
+      	src: url('../assets/fonts/icon.eot?#iefix52m981')
                format('embedded-opentype'),
-      		   url('./assets/fonts/icon.woff?52m981')
+      		   url('../assets/fonts/icon.woff?52m981')
                format('woff'),
-      		   url('./assets/fonts/icon.ttf?52m981')
+      		   url('../assets/fonts/icon.ttf?52m981')
                format('truetype'),
-      		   url('./assets/fonts/icon.svg?52m981#icon')
+      		   url('../assets/fonts/icon.svg?52m981#icon')
                format('svg');
       	font-weight: normal;
       	font-style: normal;
       }
     </style>
-    <link rel="stylesheet" href="./assets/stylesheets/application-54f87043f3.css">
+    <link rel="stylesheet" href="../assets/stylesheets/application-54f87043f3.css">
     
-      <link rel="stylesheet" href="./assets/stylesheets/palettes-05ab2406df.css">
+      <link rel="stylesheet" href="../assets/stylesheets/palettes-05ab2406df.css">
     
     
       
@@ -66,9 +64,9 @@
       </style>
     
     
-      <link rel="stylesheet" href="./">
+      <link rel="stylesheet" href="../">
     
-    <script src="./assets/javascripts/modernizr-4ab42b99fd.js"></script>
+    <script src="../assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
   </head>
   
@@ -100,7 +98,7 @@
             
           </span>
         
-        Pan Docs
+        集成Data-Binding
       </div>
     </div>
     
@@ -170,8 +168,80 @@
           
             
   <li>
-    <a class="current" title="Home" href=".">
+    <a class="" title="Home" href="..">
       Home
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="Getting_Started" href="../Getting_Started/">
+      Getting_Started
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="Components" href="../Components/">
+      Components
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="复用：继承和委托" href="../复用_继承和委托/">
+      复用：继承和委托
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="ViewHolder模式和嵌套使用" href="../ViewHolder模式和嵌套使用/">
+      ViewHolder模式和嵌套使用
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="常用的ViewModel实现类" href="../常用的ViewModel实现类/">
+      常用的ViewModel实现类
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="插件系统" href="../拓展_插件系统/">
+      插件系统
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="MVVM和MVP" href="../MVVM_MVP/">
+      MVVM和MVP
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="current" title="集成Data-Binding" href="./">
+      集成Data-Binding
     </a>
     
       
@@ -181,20 +251,8 @@
         <ul>
           
             <li class="anchor">
-              <a title="Demo" href="#demo">
-                Demo
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Features" href="#features">
-                Features
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="MV*模型" href="#mv">
-                MV*模型
+              <a title="DataBindingViewModel" href="#databindingviewmodel">
+                DataBindingViewModel
               </a>
             </li>
           
@@ -206,79 +264,7 @@
           
             
   <li>
-    <a class="" title="Getting_Started" href="Getting_Started/">
-      Getting_Started
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="Components" href="Components/">
-      Components
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="复用：继承和委托" href="复用_继承和委托/">
-      复用：继承和委托
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="ViewHolder模式和嵌套使用" href="ViewHolder模式和嵌套使用/">
-      ViewHolder模式和嵌套使用
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="常用的ViewModel实现类" href="常用的ViewModel实现类/">
-      常用的ViewModel实现类
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="插件系统" href="拓展_插件系统/">
-      插件系统
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="MVVM和MVP" href="MVVM_MVP/">
-      MVVM和MVP
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="集成Data-Binding" href="集成Data-Binding/">
-      集成Data-Binding
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
-    <a class="" title="常见问题" href="常见问题/">
+    <a class="" title="常见问题" href="../常见问题/">
       常见问题
     </a>
     
@@ -295,52 +281,8 @@
       <article class="article">
         <div class="wrapper">
           
-          <h1 id="pan">欢迎来到Pan!</h1>
-<p>Pan是一个轻量级的安卓MV*框架，帮助梳理安卓的前端代码。</p>
-<p>使用Pan将大大减少Activity的代码，使得Activity的代码缩减到100行甚至50行以内。
-同时，大大提升界面代码的可复用性，提升代码的可维护性。</p>
-<h2 id="demo">Demo</h2>
-<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">PanActivity</span> <span class="o">{</span>
-
-    <span class="n">MainViewModel</span> <span class="n">mMainViewModel</span><span class="o">;</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
-
-        <span class="n">mMainViewModel</span> <span class="o">=</span> <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">MainViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">controlledBy</span><span class="o">(</span><span class="n">MainController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">getViewModel</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">setHelloString</span><span class="o">(</span><span class="s">&quot;hello Pan!&quot;</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">render</span><span class="o">();</span> 
-    <span class="o">}</span>
-
-    <span class="c1">//Done! </span>
-    <span class="c1">//No need for more codes!</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>还等什么？<a href="./Getting_Started">Getting Started!</a></p>
-<h2 id="features">Features</h2>
-<ol>
-<li>核心：掏空Activity的代码</li>
-<li>分离渲染逻辑(ViewModel)、控制逻辑(Controller)</li>
-<li>复用页面部件，包括XML和ViewModel，且与Activity/Fragment解耦</li>
-<li>复用业务逻辑，即Controller</li>
-<li>兼容已有代码，无侵入性</li>
-<li>插件化，易于拓展，方便</li>
-<li>模型中立，可以Data-Binding结合拓展成MVVM框架，也可以按照特定的使用习惯当做MVP框架</li>
-</ol>
-<p>实际上，由于ViewModel和Activity/Fragment解耦，可以让框架的灵活度直接上一个台阶，完成很多之前难以做到的需求，例如：</p>
-<ol>
-<li>类似<a href="https://github.com/bluelinelabs/Conductor">Conductor</a>，全局使用一个Activity，通过路由切换View。这个只需要给Pan写一个路由插件即可，ViewModel对当前所处环境并不关心。</li>
-</ol>
-<h2 id="mv">MV*模型</h2>
-<p>Pan的模型比MVC、MVP、MVVM更务实，只追求实际使用中的易于上手，和上述设计目标的实现，我们可以称之为<a href="http://stackoverflow.com/questions/13329485/mvw-what-does-it-stand-for">MVW(Whatever)</a>。</p>
-<p>详细的设计思路和哲学，请参考<a href="http://blog.campusapp.cn/2016/03/18/2016-03-18-Pan%E7%9A%84%E7%AE%80%E4%BB%8B%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/">Pan的简介和设计思路</a></p>
-<p><img alt="Pan的MV*模型" src="https://img.alicdn.com/imgextra/i4/56380417/TB2KrLBlVXXXXcWXXXXXXXXXXXX_!!56380417.png" /></p>
+          <h1 id="data-binding">集成官方的Data-Binding</h1>
+<h2 id="databindingviewmodel">DataBindingViewModel</h2>
           <aside class="copyright" role="note">
             
               Copyright (c) 2016 杭州树洞网络科技有限公司 &ndash;
@@ -359,17 +301,33 @@
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
+        <a href="../MVVM_MVP/" title="MVVM和MVP">
+          <span class="direction">
+            Previous
+          </span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                MVVM和MVP
+              </div>
+            </div>
+          </div>
+        </a>
+      
     </div>
     <div class="next">
       
-        <a href="Getting_Started/" title="Getting_Started">
+        <a href="../常见问题/" title="常见问题">
           <span class="direction">
             Next
           </span>
           <div class="page">
             <div class="stretch">
               <div class="title">
-                Getting_Started
+                常见问题
               </div>
             </div>
             <div class="button button-next" role="button" aria-label="Next">
@@ -395,12 +353,12 @@
       </div>
     </main>
     <script>
-      var base_url = '.';
+      var base_url = '..';
       var repo_id  = 'campusappcn/Pan';
     </script>
-    <script src="./assets/javascripts/application-997097ee0c.js"></script>
+    <script src="../assets/javascripts/application-997097ee0c.js"></script>
     
-      <script src="./javadoc/script.js"></script>
+      <script src="../javadoc/script.js"></script>
     
     
   </body>
