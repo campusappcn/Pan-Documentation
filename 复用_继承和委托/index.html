@@ -9,19 +9,19 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
       
-        <title>复用 继承和代理 - Pan Docs</title>
+        <title>复用 继承和委托 - Pan Docs</title>
       
       
       
-        <link rel="canonical" href="http://blog.campusapp.cn/Pan-Documentation/复用_继承和代理/">
+        <link rel="canonical" href="http://blog.campusapp.cn/Pan-Documentation/复用_继承和委托/">
       
       
         <meta name="author" content="nius, campusapp.cn">
       
     
-    <meta property="og:url" content="http://blog.campusapp.cn/Pan-Documentation/复用_继承和代理/">
+    <meta property="og:url" content="http://blog.campusapp.cn/Pan-Documentation/复用_继承和委托/">
     <meta property="og:title" content="Pan Docs">
-    <meta property="og:image" content="http://blog.campusapp.cn/Pan-Documentation/复用_继承和代理//../">
+    <meta property="og:image" content="http://blog.campusapp.cn/Pan-Documentation/复用_继承和委托//../">
     <meta name="apple-mobile-web-app-title" content="Pan Docs">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -98,7 +98,7 @@
             
           </span>
         
-        复用 继承和代理
+        复用 继承和委托
       </div>
     </div>
     
@@ -204,8 +204,8 @@
           
             
   <li>
-    <a class="current" title="复用 继承和代理" href="./">
-      复用 继承和代理
+    <a class="current" title="复用 继承和委托" href="./">
+      复用 继承和委托
     </a>
     
       
@@ -215,20 +215,26 @@
         <ul>
           
             <li class="anchor">
-              <a title="ViewModel继承和Xml继承" href="#viewmodelxml">
-                ViewModel继承和Xml继承
+              <a title="ViewModel继承和Xml重用" href="#viewmodelxml">
+                ViewModel继承和Xml重用
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="ViewModel和自定义View" href="#viewmodelview">
+                ViewModel和自定义View
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="ViewModel委托" href="#viewmodel">
+                ViewModel委托
               </a>
             </li>
           
             <li class="anchor">
               <a title="Controller的继承" href="#controller">
                 Controller的继承
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="ViewModel代理" href="#viewmodel">
-                ViewModel代理
               </a>
             </li>
           
@@ -277,16 +283,60 @@
           
           <h1 id="_1">复用的设计模式</h1>
 <p>Pan解耦了Activity/Fragment和ViewModel，再加上Xml与View之间本身就通过Id解耦，从而让Pan框架有了无与伦比的高复用性，可以充分利用OO带来的好处。</p>
-<h2 id="viewmodelxml">ViewModel继承和Xml继承</h2>
-<p>//TODO
-1. 界面元素增多
-2. 界面元素相同，但样式变化
-3. 界面元素相似
-4. </p>
+<h2 id="viewmodelxml">ViewModel继承和Xml重用</h2>
+<p>列表页和详情页是非常常见的一个场景，例如微博：</p>
+<p><img width="440px" alt="列表页和详情页 Pan" src="https://img.alicdn.com/imgextra/i3/56380417/TB2tVJvmFXXXXaMXXXXXXXXXXXX_!!56380417.jpg" /></p>
+<p>列表页中的item，在详情页中，放置在头部，两者界面相似，显示的内容基本一致，交互稍有区别。直接使用ViewModel的继承，在子类中绘制不同场景下的不同界面，可以非常轻松的重用代码，如下UML：</p>
+<p><img alt="Pan的ViewModel继承" src="https://img.alicdn.com/imgextra/i3/56380417/TB2NgKfmFXXXXaaXpXXXXXXXXXX_!!56380417.png" /></p>
+<p>WeiboItemViewModel使用在列表页的ListView中，通过<a href="../ViewHolder模式和嵌套使用/">Adapter/ViewHolder模式与外层的WeiboListViewModel搭配</a>。而WeiboDetailViewModel则有可能作为详情页里ListView中的headerView与其外层的ViewModel搭配。</p>
+<p>而界面的Xml，也可以类似图中，通过include的方式进行重用。如果两边样式差距过大，也可以使用两个独立的Xml，此时只需要保证需要渲染的view的id一致即可，保证通用的渲染逻辑可以在父类重用，具体样式的渲染可以交给子类。</p>
+<p>除了列表页/详情页的场景外，任何具有可重用的“界面部件”均可以使用继承来重用、分离、梳理代码。</p>
+<h2 id="viewmodelview">ViewModel和自定义View</h2>
+<h3 id="view">为什么不直接使用自定义View？</h3>
+<p>在大家意识到Activity/Fragment非常不利于界面重用的时候，大家开始使用View作为界面部件进行重用。直接订制View大大提升了界面的可重用性，但缺陷也仍然明显：渲染逻辑和控制逻辑无法分离。当然，好的开发者仍然会在CustomView中自行分离控制逻辑，而Pan的ViewModel则是强制要求了这一点，在团队合作中，强制所有开发者使用同一种分离方式无疑是最好的。</p>
+<h3 id="customviewviewmodel">自定义CustomView与ViewModel的结合</h3>
+<p>事实上，CustomView与ViewModel甚至可以结合使用。CustomView作为一个更关注渲染逻辑的整体，可以成为ViewModel的一个field，并暴露控制接口给Controller，如下图的UML:</p>
+<p><img alt="Pan的ViewModel和View结合" src="https://img.alicdn.com/imgextra/i3/56380417/TB2MxSfmFXXXXXzXpXXXXXXXXXX_!!56380417.png" /></p>
+<p>其中，NineImageView可以专注于渲染9宫格图片，而WeiboViewModel把这部分的渲染逻辑委托给NineImageView，同时NineImageView提供控制的回调接口，让ViewModel绑定的Controller可以进行控制。</p>
+<h2 id="viewmodel">ViewModel委托</h2>
+<p>上面看到，ViewModel把绘制9宫格图片委托给了NineImageView，而控制则仍然留给了自己的Controller。如果控制部分代码更加复杂，进一步分离控制是有必要的，因此，我们可以把NineImageView升级为NineImageViewModel。如下图UML：</p>
+<p><img alt="Pan的ViewModel委托" src="https://img.alicdn.com/imgextra/i3/56380417/TB2o4p2mFXXXXcNXpXXXXXXXXXX_!!56380417.png" /></p>
+<p>其中，完成委托这一步，可以在ViewModel的onInit()方法中进行，ViewModel的完整初始化步骤可以参考<a href="../Components/#viewmodelcontroller">ViewModel生命周期</a>。示例代码如下：</p>
+<div class="code"><pre><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">view_weibo</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WeiboViewModel</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span><span class="o">{</span>
+
+    <span class="kd">protected</span> <span class="n">NineImageViewModel</span> <span class="n">mNineImageViewModel</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="n">Weibo</span> <span class="n">mWeibo</span><span class="o">;</span>
+
+    <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onInit</span><span class="o">(){</span>
+        <span class="c1">//完成委托</span>
+        <span class="n">mNineImageViewModel</span> <span class="o">=</span> <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">getLifecylceObserved</span><span class="o">(),</span> <span class="n">NineImageViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">controlledBy</span><span class="o">(</span><span class="n">NineImageController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">mWeibo</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">:</span> <span class="n">mWeibo</span><span class="o">.</span><span class="na">getImages</span><span class="o">():</span> <span class="kc">null</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">getViewModel</span><span class="o">();</span> <span class="c1">//如果要自行创建View而非外层View的Xml，这里可以使用其他重载，再通过rootView加入界面。</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">WeiboViewModel</span> <span class="nf">setData</span><span class="o">(</span><span class="n">Weibo</span> <span class="n">weibo</span><span class="o">){</span>
+        <span class="n">mWeibo</span> <span class="o">=</span> <span class="n">weibo</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">mNineImageViewModel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="n">mNineImageViewModel</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">weibo</span><span class="o">.</span><span class="na">getImages</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(){</span>
+        <span class="n">mNineImageViewModel</span><span class="o">.</span><span class="na">render</span><span class="o">();</span>
+        <span class="c1">//...</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+
+
 <h2 id="controller">Controller的继承</h2>
-<p>//TODO</p>
-<h2 id="viewmodel">ViewModel代理</h2>
-<p>//TODO</p>
+<p>随着ViewModel的继承，Controller可以进行对应的继承，以复用控制逻辑。Controller的继承时，稍稍处理一下绑定ViewModel类型的泛型参数就可以了，参考下面的UML：</p>
+<p><img alt="Pan的Controller继承" src="https://img.alicdn.com/imgextra/i4/56380417/TB2J8qKmFXXXXXsXXXXXXXXXXXX_!!56380417.png" /></p>
+<p>继承后的Controller，子类可以增加额外的控制逻辑，也可以有选择的覆盖父类的控制逻辑。</p>
           <aside class="copyright" role="note">
             
               Copyright (c) 2016 杭州树洞网络科技有限公司 &ndash;
