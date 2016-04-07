@@ -9,7 +9,7 @@
 	}
 
 	dependencies {
-        compile 'com.github.campusappcn:Pan:0.3.0'
+        compile 'com.github.campusappcn:Pan:0.3.1'
 	}
 ```
 
