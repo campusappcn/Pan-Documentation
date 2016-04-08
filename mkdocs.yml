@@ -27,7 +27,7 @@ extra_css:
 
 pages:
   - Home: index.md
-  - Getting_Started: Getting_Started.md
+  - Getting Started: Getting_Started.md
   - Components: Components.md
   - 复用：继承和委托: 复用_继承和委托.md
   - ViewHolder模式和嵌套使用: ViewHolder模式和嵌套使用.md

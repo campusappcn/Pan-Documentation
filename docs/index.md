@@ -50,6 +50,8 @@ public class MainActivity extends PanActivity {
 
 Pan的模型比MVC、MVP、MVVM更务实，只追求实际使用中的易于上手，和上述设计目标的实现，我们可以称之为[MVW(Whatever)](http://stackoverflow.com/questions/13329485/mvw-what-does-it-stand-for)。
 
+但你仍然可以把Pan当做MVP、MVVM框架使用，例如Pan可以直接[等价到Mosby(MVP)的代码](MVVM_MVP/#panmvpmosby)。
+
 详细的设计思路和哲学，请参考[Pan的简介和设计思路](http://blog.campusapp.cn/2016/03/18/2016-03-18-Pan%E7%9A%84%E7%AE%80%E4%BB%8B%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/)
 
 ![Pan的MV*模型](https://img.alicdn.com/imgextra/i4/56380417/TB2KrLBlVXXXXcWXXXXXXXXXXXX_!!56380417.png)
