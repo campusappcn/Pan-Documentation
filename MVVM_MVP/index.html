@@ -177,8 +177,8 @@
           
             
   <li>
-    <a class="" title="Getting_Started" href="../Getting_Started/">
-      Getting_Started
+    <a class="" title="Getting Started" href="../Getting_Started/">
+      Getting Started
     </a>
     
   </li>
@@ -242,8 +242,14 @@
         <ul>
           
             <li class="anchor">
-              <a title="通过订制ViewModel，自由选择MVP和MVVM" href="#viewmodelmvpmvvm">
-                通过订制ViewModel，自由选择MVP和MVVM
+              <a title="Pan当做MVP框架使用(Mosby)" href="#panmvpmosby">
+                Pan当做MVP框架使用(Mosby)
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="MVVM" href="#mvvm">
+                MVVM
               </a>
             </li>
           
@@ -281,8 +287,95 @@
       <article class="article">
         <div class="wrapper">
           
-          <h1 id="mvpmvvm-viewmodel">MVP&amp;MVVM: ViewModel的开放和订制</h1>
-<h2 id="viewmodelmvpmvvm">通过订制ViewModel，自由选择MVP和MVVM</h2>
+          <h1 id="mvpmvvm-pan">MVP&amp;MVVM: 让Pan按照你喜欢的模型工作</h1>
+<p>Pan的模型是MV*，意味着，只要达到了Pan的初心：分离Activity的代码，Pan可以被用来以任何你喜欢的模型来编写代码。例如，你可以把Pan当做一个MVP框架来使用，也可以当做一个MVVM的框架来使用，只需要很少、甚至不需要代码改动。</p>
+<h2 id="panmvpmosby">Pan当做MVP框架使用(<a href="http://hannesdorfmann.com/mosby/">Mosby</a>)</h2>
+<p>ViewModel本身理解为MVP中的View。ViewModel的render方法相当于全量刷新界面，而更局部刷新可以在子类提供诸如renderUser等方法。而Controller则可以类比到Presenter。因此，符合MVP框架的代码可以直接迁移成Pan框架的代码，你会发现是等价的。不仅如此，Pan框架由于强制代码分离，会使得原先仍然有很多代码的Activity，变的只需要寥寥几行。</p>
+<p>例如，我们可以直接迁移最近比较火的MVP框架<a href="http://hannesdorfmann.com/mosby/getting-started/">Mosby的Getting Started</a>，你可以类似的写出下面的代码：</p>
+<p>首先是View接口，定义View的渲染行为</p>
+<div class="code"><pre><span class="c1">// View interface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloWorldView</span> <span class="o">{</span>
+
+  <span class="c1">// displays &quot;Hello&quot; greeting text in red text color</span>
+  <span class="kt">void</span> <span class="nf">showHello</span><span class="o">(</span><span class="n">String</span> <span class="n">greetingText</span><span class="o">);</span>
+
+  <span class="c1">// displays &quot;Goodbye&quot; greeting text in blue text color</span>
+  <span class="kt">void</span> <span class="nf">showGoodbye</span><span class="o">(</span><span class="n">String</span> <span class="n">greetingText</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>然后是View接口的实现。Mosby是把实现交给了Activity，而在Pan中，对应的渲染逻辑实现则是ViewModel，从而使得Activity没有更多的代码。
+当然Mosby也是支持不交给Activity的，用别的实现类；而Pan则是强制分离。</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldViewImpl</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span> <span class="kd">implements</span> <span class="n">HelloWorldView</span><span class="o">{</span>
+
+    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">greetingTextView</span><span class="o">)</span> <span class="n">TextView</span> <span class="n">vGreetingTextView</span><span class="o">;</span>
+    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">helloButton</span><span class="o">)</span> <span class="n">Button</span> <span class="n">vHelloBtn</span><span class="o">;</span>
+
+    <span class="nd">@Override</span> <span class="kt">void</span> <span class="nf">showHello</span><span class="o">(</span><span class="n">String</span> <span class="n">greetingText</span><span class="o">){</span>
+        <span class="n">greetingTextView</span><span class="o">.</span><span class="na">setTextColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+        <span class="n">greetingTextView</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">greetingText</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">showGoodbye</span><span class="o">(</span><span class="n">String</span> <span class="n">greetingText</span><span class="o">){</span>
+        <span class="n">greetingTextView</span><span class="o">.</span><span class="na">setTextColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
+        <span class="n">greetingTextView</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">greetingText</span><span class="o">);</span>
+    <span class="o">}</span>   
+
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(){</span>
+        <span class="c1">//It is more clear that put &#39;greetingText&#39; and &#39;isHelloOrGoodbye&#39; as a member of ViewModel in Pan&#39;s philosophy,</span>
+        <span class="c1">//and render method will use current state to choose show which color.</span>
+
+        <span class="c1">//But anyway, this is the example for Mosby.</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>接下来是Presenter，实际上Mosby的Presenter处理的是将异步请求的结果绑定到View的渲染方法上的作用，而这个作用在Pan中由Controller实现。这里可以直接将Mosby的Presenter的代码拷贝过来。
+Mosby的点击事件绑定也交给了Activity，如果迁移到Pan，就需要放到Controller的bindEvents方法中来。你可以在bindEvents中使用Butterknife，这样就更像Mosby的做法。</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HellowWorldPresenter</span> <span class="kd">extends</span> <span class="n">GeneralController</span><span class="o">&lt;</span><span class="n">HelloWorldViewImpl</span><span class="o">&gt;{</span>
+
+    <span class="c1">// Greeting Task is &quot;business logic&quot;</span>
+    <span class="kd">private</span> <span class="n">GreetingGeneratorTask</span> <span class="n">greetingTask</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">cancelGreetingTaskIfRunning</span><span class="o">(){</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">greetingTask</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="n">greetingTask</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">greetHello</span><span class="o">(){</span>
+        <span class="n">cancelGreetingTaskIfRunning</span><span class="o">();</span>
+
+        <span class="n">greetingTask</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GreetingGeneratorTask</span><span class="o">(</span><span class="s">&quot;Hello&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">GreetingTaskListener</span><span class="o">(){</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onGreetingGenerated</span><span class="o">(</span><span class="n">String</span> <span class="n">greetingText</span><span class="o">){</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">isViewAttached</span><span class="o">())</span>
+                <span class="n">getView</span><span class="o">().</span><span class="na">showHello</span><span class="o">(</span><span class="n">greetingText</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="n">greetingTask</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span> 
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">bindEvents</span><span class="o">(){</span>
+        <span class="n">$vm</span><span class="o">.</span><span class="na">vHelloBtn</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">greetHello</span><span class="o">();</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="c1">//...more logic can be same way ported.</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>最后，在Activity中调用工厂方法。 </p>
+<div class="code"><pre><span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">HelloWorldViewImpl</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">controlledBy</span><span class="o">(</span><span class="n">HelloWorldPresenter</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">getViewModel</span><span class="o">();</span>
+</pre></div>
+
+
+<h2 id="mvvm">MVVM</h2>
 <p>//TODO</p>
           <aside class="copyright" role="note">
             
