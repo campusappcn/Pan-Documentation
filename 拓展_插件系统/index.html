@@ -310,6 +310,11 @@
 <li>当前的事件，例如<a href="../javadoc/cn/campusapp/pan/lifecycle/OnResume.html">OnResume.class</a></li>
 <li>如果当前的生命周期方法有参数，则都放在parameters中，例如onActivityResult的所有参数。</li>
 </ol>
+<p>实现了插件后，可以在App的onCreate方法中安装插件：</p>
+<div class="code"><pre><span class="n">Pan</span><span class="o">.</span><span class="na">installPlugin</span><span class="o">(</span><span class="k">new</span> <span class="n">CustomPlugin</span><span class="o">());</span>
+</pre></div>
+
+
 <h2 id="eventbus">EventBus插件的简单实现</h2>
 <p>如果项目中使用到了<a href="http://greenrobot.org/eventbus/">EventBus</a>，那么一定会遇到EventBus的事件订阅和取消订阅两个成对出现的方法。这种事件处理逻辑应该放在Controller中，而通过写一个EventBus插件可以方便的完成对Controller的register：</p>
 <div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EventBusPlugin</span> <span class="kd">implements</span> <span class="n">ControllerLifecyclePlugin</span><span class="o">{</span>

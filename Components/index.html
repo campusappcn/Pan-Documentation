@@ -357,14 +357,14 @@
     <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
 
     <span class="n">MainViewModel</span> <span class="n">vm</span> <span class="o">=</span> <span class="n">Pan</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">MainViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">getViewModel</span><span class="o">();</span> <span class="c1">//直接使用Activity的decorView作为rootView</span>
+        <span class="o">.</span><span class="na">getViewModel</span><span class="o">();</span> <span class="c1">//直接使用Activity的decorView的第一个子View作为rootView</span>
 
     <span class="n">vm</span><span class="o">.</span><span class="na">render</span><span class="o">();</span>
 <span class="o">}</span>
 </pre></div>
 
 
-<p>在Activity中，需要在onCreate中完成工厂实例化过程。直接使用无参数的getViewModel()工厂方法获得ViewModel实例。此时，getRootView()返回的是Activity的decorView，即整个页面的根View。</p>
+<p>在Activity中，需要在onCreate中完成工厂实例化过程。直接使用无参数的getViewModel()工厂方法获得ViewModel实例。此时，getRootView()返回的是Activity的decorView的第一个子View，即整个页面的根View。</p>
 <p>注意，这里要求Activity实现LifecycleObserved接口，可以通过直接继承<a href="../javadoc/cn/campusapp/pan/PanActivity.html">PanActivity</a>完成，也可以在自定义的Activity中，仿写<a href="../javadoc/cn/campusapp/pan/PanActivity.html">PanActivity</a>的代码并实现<a href="../javadoc/cn/campusapp/pan/lifecycle/LifecycleObserved.html">LifecycleObserved</a>接口。参考<a href="#panactivitypanfragment">自定义PanActivity/PanFragment</a>。</p>
 <h2 id="panpanfragmentadapter">Pan：PanFragment中使用（Adapter同理）</h2>
 <div class="code"><pre><span class="nd">@Override</span>

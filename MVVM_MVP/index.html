@@ -242,14 +242,20 @@
         <ul>
           
             <li class="anchor">
-              <a title="Pan当做MVP框架使用(Mosby)" href="#panmvpmosby">
-                Pan当做MVP框架使用(Mosby)
+              <a title="Pan当做MVP框架(复刻Mosby)" href="#panmvpmosby">
+                Pan当做MVP框架(复刻Mosby)
               </a>
             </li>
           
             <li class="anchor">
-              <a title="MVVM" href="#mvvm">
-                MVVM
+              <a title="Pan当做MVVM" href="#panmvvm">
+                Pan当做MVVM
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Pan融合Android官方的Data-Binding" href="#panandroiddata-binding">
+                Pan融合Android官方的Data-Binding
               </a>
             </li>
           
@@ -289,9 +295,9 @@
           
           <h1 id="mvpmvvm-pan">MVP&amp;MVVM: 让Pan按照你喜欢的模型工作</h1>
 <p>Pan的模型是MV*，意味着，只要达到了Pan的初心：分离Activity的代码，Pan可以被用来以任何你喜欢的模型来编写代码。例如，你可以把Pan当做一个MVP框架来使用，也可以当做一个MVVM的框架来使用，只需要很少、甚至不需要代码改动。</p>
-<h2 id="panmvpmosby">Pan当做MVP框架使用(<a href="http://hannesdorfmann.com/mosby/">Mosby</a>)</h2>
+<h2 id="panmvpmosby">Pan当做MVP框架(复刻<a href="http://hannesdorfmann.com/mosby/">Mosby</a>)</h2>
 <p>ViewModel本身理解为MVP中的View。ViewModel的render方法相当于全量刷新界面，而更局部刷新可以在子类提供诸如renderUser等方法。而Controller则可以类比到Presenter。因此，符合MVP框架的代码可以直接迁移成Pan框架的代码，你会发现是等价的。不仅如此，Pan框架由于强制代码分离，会使得原先仍然有很多代码的Activity，变的只需要寥寥几行。</p>
-<p>例如，我们可以直接迁移最近比较火的MVP框架<a href="http://hannesdorfmann.com/mosby/getting-started/">Mosby的Getting Started</a>，你可以类似的写出下面的代码：</p>
+<p><strong>例如，我们可以直接迁移最近比较火的MVP框架<a href="http://hannesdorfmann.com/mosby/getting-started/">Mosby的Getting Started</a>，你可以类似的写出下面的代码：</strong></p>
 <p>首先是View接口，定义View的渲染行为</p>
 <div class="code"><pre><span class="c1">// View interface</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloWorldView</span> <span class="o">{</span>
@@ -375,8 +381,119 @@ Mosby的点击事件绑定也交给了Activity，如果迁移到Pan，就需要�
 </pre></div>
 
 
-<h2 id="mvvm">MVVM</h2>
-<p>//TODO</p>
+<h2 id="panmvvm">Pan当做MVVM</h2>
+<p>当然，你也可以完全可以把Pan改造成一个MVVM框架，只需很少的代码。如果你阅读过<a href="../常用的ViewModel实现类/#autorenderviewmodel">AutoRenderViewModel的介绍</a>，会发现这个类的用法已经在向MVVM上靠拢了。</p>
+<p>MVVM的核心在于VM-V双向绑定。所以我们先搞定VM-&gt;V，意味着我们要限定ViewModel中使用的数据对象：</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ViewModelData</span><span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">notifyRender</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">addViewModel</span><span class="o">(</span><span class="n">ViewModel</span> <span class="n">viewModel</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ViewModelDataBase</span> <span class="kd">implements</span> <span class="n">ViewModelData</span><span class="o">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">mViewModels</span> <span class="o">=</span> <span class="n">Collections</span><span class="o">.</span><span class="na">newSetFromMap</span><span class="o">(</span><span class="k">new</span> <span class="n">WeakHashMap</span><span class="o">&lt;</span><span class="n">ViewModel</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">&gt;());</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyRender</span><span class="o">(){</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">ViewModel</span> <span class="n">vm</span><span class="o">:</span> <span class="n">mViewModels</span><span class="o">){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">vm</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">vm</span><span class="o">.</span><span class="na">render</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addViewModel</span><span class="o">(</span><span class="n">ViewModel</span> <span class="n">viewModel</span><span class="o">){</span>
+        <span class="n">mViewModels</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">WeakReference</span><span class="o">(</span><span class="n">viewModel</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>上面的代码提供了一个数据类型的基类，他在合适的时机通知ViewModel去刷新界面，一个可能的实现类如下：</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WeiboData</span> <span class="kd">extends</span> <span class="n">ViewModelDataBase</span><span class="o">{</span>
+    <span class="n">String</span> <span class="n">weiboText</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setWeiboText</span><span class="o">(</span><span class="n">String</span> <span class="n">weiboText</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">weiboText</span> <span class="o">=</span> <span class="n">weiboText</span><span class="o">;</span>
+        <span class="n">notifyRender</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="c1">//...</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>接下来编写一个ViewModel的基类，ViewModel需要至少提供单向的自动刷新，所以会有如下代码：</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">TwoWayBindingViewModel</span><span class="o">&lt;</span><span class="n">D</span> <span class="kd">extends</span> <span class="n">ViewModelDataBase</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span><span class="o">{</span>
+
+    <span class="kd">protected</span> <span class="n">D</span> <span class="n">mData</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">TwoWayBindingViewModel</span> <span class="nf">setData</span><span class="o">(</span><span class="n">D</span> <span class="n">data</span><span class="o">){</span>
+        <span class="n">mData</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">mData</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="n">mData</span><span class="o">.</span><span class="na">addViewModel</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">TwoWayBindingViewModel</span> <span class="nf">setDataAndRender</span><span class="o">(</span><span class="n">D</span> <span class="n">data</span><span class="o">){</span>
+        <span class="n">setData</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+        <span class="n">render</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+
+
+<p>在具体的场景中，直接使用TwoWayBindingViewModel作为基类，并传入ViewModelDataBase的子类作为数据，就可以实现VM-&gt;V自动刷新功能。</p>
+<p>接下来，我们通过Controller来实现V-&gt;VM的绑定。首先需要一个注解标记绑定的field。</p>
+<div class="code"><pre><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">FIELD</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Binding</span><span class="o">{</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WeiboViewModel</span> <span class="kd">extends</span> <span class="n">TwoWayBindingViewModel</span><span class="o">&lt;</span><span class="n">Weibo</span><span class="o">&gt;{</span>
+
+    <span class="nd">@Binding</span><span class="o">(</span><span class="s">&quot;weiboText&quot;</span><span class="o">)</span>
+    <span class="kd">protected</span> <span class="n">EditText</span> <span class="n">vEditText</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></div>
+
+
+<p>接下来，是Controller的具体实现，为了避免反射代码影响阅读性，这里用伪代码编写：</p>
+<div class="code"><pre><span class="x">public abstract class TwoWayBindingController&lt;T extends TwoWayBindingViewModel&gt; extends GeneralController&lt;T&gt;</span><span class="err">{</span><span class="x"></span>
+
+<span class="x">    protected void bindEvents()</span><span class="err">{</span><span class="x"></span>
+<span class="x">        super.bindEvents();</span>
+
+<span class="x">        for each field in </span><span class="p">$</span><span class="nv">vm</span><span class="p">.</span><span class="nv">getClass</span><span class="p">()</span><span class="x"> </span><span class="err">{</span><span class="x"></span>
+<span class="x">            if(f.getName().startsWith(&quot;v&quot;))</span><span class="err">{</span><span class="x"></span>
+<span class="x">                bindField(f);</span>
+<span class="x">            }</span>
+<span class="x">        }</span>
+<span class="x">    }</span>
+
+<span class="x">    protected void bindField(Field f)</span><span class="err">{</span><span class="x"></span>
+
+<span class="x">        final Method setter = find the setter binded, e.g. setWeiboText;</span>
+
+<span class="x">        switch f.getType():</span>
+<span class="x">            case EditText.class:</span>
+<span class="x">                 f.get(</span><span class="p">$</span><span class="nv">vm</span><span class="x">).addTextChangeListener(new TextWatcher()</span><span class="err">{</span><span class="x"></span>
+<span class="x">                        public void afterTextChanged(Editable s)</span><span class="err">{</span><span class="x"></span>
+
+<span class="x">                            setter.invoke(mData, s.toString());</span>
+<span class="x">                        }</span>
+<span class="x">                    })</span>
+<span class="x">                 break;</span>
+<span class="x">            case ... //other controls</span>
+<span class="x">    }</span>
+
+<span class="x">}</span>
+</pre></div>
+
+
+<p>这里用的是反射，考虑到一个界面上一般只需要绑定一次，以及需要绑定的控件其实有限，这样做不会对性能有太大的影响。当然，用Annotation Processing可以实现相同的效果，只是编写/测试起来相对麻烦。</p>
+<h2 id="panandroiddata-binding">Pan融合Android官方的Data-Binding</h2>
+<p>如果你对上面自己实现MVVM的方案不满意，官方的Data-Binding是避免了反射，而且可以直接使用。Pan也同样支持，接入后让使用DataBinding的也更加舒适，虽然这样做并不被推荐。可以直接参考<a href="../集成Data-binding">集成Data-binding</a>。</p>
           <aside class="copyright" role="note">
             
               Copyright (c) 2016 杭州树洞网络科技有限公司 &ndash;

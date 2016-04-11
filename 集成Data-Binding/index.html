@@ -248,16 +248,6 @@
         
       
       
-        <ul>
-          
-            <li class="anchor">
-              <a title="DataBindingViewModel" href="#databindingviewmodel">
-                DataBindingViewModel
-              </a>
-            </li>
-          
-        </ul>
-      
     
   </li>
 
@@ -282,7 +272,99 @@
         <div class="wrapper">
           
           <h1 id="data-binding">集成官方的Data-Binding</h1>
-<h2 id="databindingviewmodel">DataBindingViewModel</h2>
+<p>官方的Data-Binding是一个避免了反射的MVVM的实现。不过说实话，个人觉得比较鸡肋。渲染逻辑在实际编写中，有大量的图片加载逻辑、自定义View逻辑等等，仍然无法完全用Xml的表达式来替代，而必须使用各类Attribute Setters, Converters。这意味着渲染逻辑会存在于<strong>两个以上位置</strong>，这将会对代码的可维护性造成极大的破坏，因为不同的程序员对一个渲染步骤是放在Java还是放在Xml中用表达式有着不同的理解。对于比Reactjs这种js框架，其渲染逻辑和样式Html是放在一处的，避免了这个问题。与此同时，Data-Binding也不能解决Activity的代码量过大的问题，只减少了部分代码，同时让一切变的更混乱了。</p>
+<p>Anyway，如果你确定想使用Data-Binding，Pan也仍然支持，稍加改造即可。完整的可运行Sample可以参考<a href="https://github.com/campusappcn/Pan/tree/master/sample-databinding">源码中的sample-databinding模块</a>。</p>
+<p>首先，我们添加一个DataBindingViewModel，支持设置Data和其Binding：</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">DataBindingViewModel</span><span class="o">&lt;</span><span class="n">D</span> <span class="kd">extends</span> <span class="n">BaseObservable</span><span class="o">,</span> <span class="n">B</span> <span class="kd">extends</span> <span class="n">ViewDataBinding</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span> <span class="o">{</span>
+
+    <span class="kd">protected</span> <span class="n">D</span> <span class="n">mData</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="n">B</span> <span class="n">mViewDataBinding</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">DataBindingViewModel</span><span class="o">&lt;</span><span class="n">D</span><span class="o">,</span> <span class="n">B</span><span class="o">&gt;</span> <span class="nf">setData</span><span class="o">(</span><span class="n">D</span> <span class="n">data</span><span class="o">){</span>
+        <span class="n">mData</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+        <span class="n">bindData</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">D</span> <span class="nf">getData</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">mData</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">bindData</span><span class="o">(</span><span class="n">D</span> <span class="n">data</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onInit</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onInit</span><span class="o">();</span>
+        <span class="n">mViewDataBinding</span> <span class="o">=</span> <span class="n">DataBindingUtil</span><span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="n">getRootView</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+
+
+<p>在onInit的时候，自动找到Binding的对象，这样子类只需重写bindData这一步即可，同时，子类的render留空，例如：</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainDataBindingViewModel</span> <span class="kd">extends</span> <span class="n">DataBindingViewModel</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">ActivityMainBinding</span><span class="o">&gt;</span> <span class="o">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">bindData</span><span class="o">(</span><span class="n">User</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mViewDataBinding</span><span class="o">.</span><span class="na">setUser</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">MainDataBindingViewModel</span> <span class="nf">render</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
+
+
+<p>User是一个实现了BaseObserverable的实体类，比较普通，下面是User类：</p>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">extends</span> <span class="n">BaseObservable</span> <span class="o">{</span>
+
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@Bindable</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="n">notifyPropertyChanged</span><span class="o">(</span><span class="n">BR</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">User</span><span class="o">(){}</span>
+
+    <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>搭配的界面Xml:</p>
+<div class="code"><pre><span class="nt">&lt;layout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+        <span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+        <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;data&gt;</span>
+        <span class="nt">&lt;variable</span> <span class="na">name=</span><span class="s">&quot;user&quot;</span> <span class="na">type=</span><span class="s">&quot;cn.campusapp.sample_databinding.User&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+
+    <span class="nt">&lt;RelativeLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="nt">&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:text=</span><span class="s">&quot;@{user.name}&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/RelativeLayout&gt;</span>
+<span class="nt">&lt;/layout&gt;</span>
+</pre></div>
+
+
+<p>这样，搭配的Controller通过控制mUser对象的field，达到自动刷新界面的效果。如果想要实现DataBinding中的onclick，也比较简单，按照文档代理到Controller即可，可以直接看<a href="https://github.com/campusappcn/Pan/tree/master/sample-databinding">源码中的sample-databinding模块</a>，就不再赘述。</p>
           <aside class="copyright" role="note">
             
               Copyright (c) 2016 杭州树洞网络科技有限公司 &ndash;
