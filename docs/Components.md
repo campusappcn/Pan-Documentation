@@ -34,12 +34,12 @@ protected void onCreate(Bundle savedInstanceState){
     setContentView(R.layout.activity_main);
 
     MainViewModel vm = Pan.with(this, MainViewModel.class)
-        .getViewModel(); //直接使用Activity的decorView作为rootView
+        .getViewModel(); //直接使用Activity的decorView的第一个子View作为rootView
 
     vm.render();
 }
 ```
-在Activity中，需要在onCreate中完成工厂实例化过程。直接使用无参数的getViewModel()工厂方法获得ViewModel实例。此时，getRootView()返回的是Activity的decorView，即整个页面的根View。
+在Activity中，需要在onCreate中完成工厂实例化过程。直接使用无参数的getViewModel()工厂方法获得ViewModel实例。此时，getRootView()返回的是Activity的decorView的第一个子View，即整个页面的根View。
 
 注意，这里要求Activity实现LifecycleObserved接口，可以通过直接继承[PanActivity](javadoc/cn/campusapp/pan/PanActivity.html)完成，也可以在自定义的Activity中，仿写[PanActivity](javadoc/cn/campusapp/pan/PanActivity.html)的代码并实现[LifecycleObserved](javadoc/cn/campusapp/pan/lifecycle/LifecycleObserved.html)接口。参考[自定义PanActivity/PanFragment](#panactivitypanfragment)。
 
