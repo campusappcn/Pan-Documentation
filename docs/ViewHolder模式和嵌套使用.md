@@ -94,6 +94,35 @@ protected void onCreate(Bundle savedInstance){
 
 ```
 
+## ViewHolder重用中的异步Controller
+
+!!! warning "Controller不会被重用"
+    ViewModel通过Tag识别，进行了重用，但getViewModel会重新实例化一个Controller并执行新的初始化周期。
+
+在大多数情况下，这是符合直觉的情况，因为当用户下滑到下一个卡片时，需要根据数据重新绑定事件。这里的主要问题在于，如果Controller包含了异步操作，例如进行了网络请求，当请求返回时，用户已经下滑了，可能的状态如下：
+
+1. ViewModel：随着下滑，ViewModel被重用，绑定的数据被更新
+2. Old Controller：发起请求的Controller，含有ViewModel引用，且在请求返回时，尝试更新数据
+3. New Controller：下滑后，新的Item绑定的Controller
+
+因此，在这种情况，应注意异步更新数据不应该直接通过ViewModel的引用更新数据，而是更新final化的方法内局域变量，例如：
+
+```Java
+//in controller
+protected void updateInfo(){
+	final Data bindedData = $vm.getData();
+	requestData((data) -> {
+		bindedData.setText(data.getText());
+
+		// wrong way:
+		// $vm.getData().setText(data.getText());
+	});
+}
+
+```
+这个坑是ViewHolder模式与生俱来的，而不是Pan引起的。在不使用Pan的情况下，同样的更新错误也可能会在Adapter中发生。Pan并不解决这一问题，因为大多数情况下Adapter中的数据是伴随列表改变的，而不是自行异步更新。当遇到异步更新的情况，开发者也应该清楚在ViewHolder模式中这会带来的问题，小心即可。
+
+
 ## RecyclerViewModel
 
 RecyclerViewModel用于RecyclerView中，由于Java的单继承，RecyclerView.Adapter需要返回一个ViewHolder的子类对象，因此，这里使用RecyclerViewModel作为基类以替换GeneralViewModel。其他用法和ListView完全一致。
