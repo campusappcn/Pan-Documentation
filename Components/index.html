@@ -72,7 +72,7 @@
   
   
   
-  <body class="palette-primary-indigo palette-accent-light-blue">
+  <body class="palette-primary-grey palette-accent-cyan">
     
       
       
@@ -447,7 +447,7 @@
 </pre></div>
 
 
-<p>Pan框架将保证在特定的生命周期中对这些方法进行调用。</p>
+<p>Pan框架将保证在特定的生命周期中对这些方法进行调用。所有可以使用的生命周期方法可以参考<a href="../javadoc/cn/campusapp/pan/lifecycle/package-summary.html">lifecycle包</a></p>
 <p>Activity和Fragment有很多生命周期是重合的，例如OnResume、OnStart，在Pan的实现中，当该生命周期到达时，Controller只会被调用一次。</p>
 <p>一个Controller可以同时监听只属于Activity的生命周期，和只属于Fragment的生命周期，从而让Controller的可复用性大大提高。在Activity的环境中使用时，Fragment的生命周期将不会被调用到。</p>
 <p>早期的Pan曾今区分过Activity和Fragment的具体调用，但实际使用过程中发现，这个区分并无必要，因为Fragment的onResume在安卓源码中就是被Activity的onResume所调用的，时机完全相同，区分反而增加了代码的复杂度，因此，在现在的版本中，重合的生命周期不加以区分。</p>
