@@ -92,7 +92,9 @@ Pan.with(getActivity(), MainViewModel.class)
 
 ## Controller
 
-Controller的基本用法很简单，可以直接继承GeneralController，并通过泛型指定绑定的ViewModel
+Controller的职责监控各类交互/生命周期事件，并决定何时调用ViewModel的render。
+
+用法也很简单，可以直接继承GeneralController，并通过泛型指定绑定的ViewModel
 
 ```Java
 public class MainController extends GeneralController<MainViewModel> {
