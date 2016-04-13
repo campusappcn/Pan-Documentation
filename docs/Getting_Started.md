@@ -9,7 +9,7 @@
 	}
 
 	dependencies {
-        compile 'com.github.campusappcn:Pan:0.4.0'
+        compile 'com.github.campusappcn:Pan:0.9.0'
 	}
 ```
 
@@ -117,3 +117,5 @@ public class MainController extends GeneralController<MainViewModel>
 
 </LinearLayout>
 ```
+
+!!!info "深入理解Pan，请阅读[Components](Components)"

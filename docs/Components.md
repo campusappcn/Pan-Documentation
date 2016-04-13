@@ -139,7 +139,7 @@ public class MainController extends GeneralController<MainViewModel>
     }
 }
 ```
-Pan框架将保证在特定的生命周期中对这些方法进行调用。
+Pan框架将保证在特定的生命周期中对这些方法进行调用。所有可以使用的生命周期方法可以参考[lifecycle包](javadoc/cn/campusapp/pan/lifecycle/package-summary.html)
 
 Activity和Fragment有很多生命周期是重合的，例如OnResume、OnStart，在Pan的实现中，当该生命周期到达时，Controller只会被调用一次。
 
