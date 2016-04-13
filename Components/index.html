@@ -64,7 +64,7 @@
       </style>
     
     
-      <link rel="stylesheet" href="../">
+      <link rel="stylesheet" href="../css/custom.css">
     
     <script src="../assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
@@ -245,8 +245,8 @@
             </li>
           
             <li class="anchor">
-              <a title="自定义PanActivity/PanFragment" href="#panactivitypanfragment">
-                自定义PanActivity/PanFragment
+              <a title="自定义Activity/Fragment" href="#activityfragment">
+                自定义Activity/Fragment
               </a>
             </li>
           
@@ -473,7 +473,7 @@
 <h2 id="viewmodelcontroller">ViewModel和Controller的生命周期</h2>
 <p>Pan工厂会保证传入的GeneralViewModel将按照下列顺序初始化：</p>
 <p><img style="max-width: 60%;" src="https://img.alicdn.com/imgextra/i4/56380417/TB2qwPDmpXXXXceXpXXXXXXXXXX_!!56380417.png" alt="Pan工厂的执行顺序"></p>
-<h2 id="panactivitypanfragment">自定义PanActivity/PanFragment</h2>
+<h2 id="activityfragment">自定义Activity/Fragment</h2>
 <p>由于Java的单继承特性，如果某个Activity已经继承了某个自定义的Activity，或者某个类库的Activity，将无法直接继承PanActivity/PanFragment。</p>
 <p>此时，开发者可以继承基类Activity，并实现<a href="../javadoc/cn/campusapp/pan/lifecycle/LifecycleObserved.html">LifecycleObserved</a>接口，同时，将PanActivity中的代码，直接拷贝到CustomActivity中，即可使用。Fragment同理。</p>
 <div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PanCustomActivityBase</span> <span class="kd">extends</span> <span class="n">CustomActivity</span> <span class="kd">implements</span> <span class="n">LifecycleObserved</span><span class="o">{</span>

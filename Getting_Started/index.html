@@ -64,7 +64,7 @@
       </style>
     
     
-      <link rel="stylesheet" href="../">
+      <link rel="stylesheet" href="../css/custom.css">
     
     <script src="../assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
@@ -306,6 +306,9 @@
         <div class="wrapper">
           
           <h1 id="getting-started">Getting Started</h1>
+<div class="admonition info">
+<p class="admonition-title">可直接参考 <a href="https://github.com/campusappcn/Pan/tree/master/sample-github-users">sample-github-users</a></p>
+</div>
 <h2 id="pan">Pan依赖</h2>
 <div class="code"><pre>    <span class="n">repositories</span> <span class="o">{</span>
         <span class="c1">//jitpack repository</span>
@@ -320,7 +323,7 @@
 
 <h2 id="mainacitivity">MainAcitivity</h2>
 <p>首先，是轻量化的Activity代码，主要通过Pan的工厂方法with，得到ViewModel的实例，绑定ViewModel和Controller到Activity上。工厂方法with有很多重载，也可以传入使用实例化好的对象。</p>
-<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">PanActivity</span> <span class="o">{</span>  <span class="c1">//需要继承PanActivity，也可以自定义，见components章节</span>
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">PanActivity</span> <span class="o">{</span>  <span class="c1">//需要继承PanActivity，也可以自定义，见components/自定义Activity 章节</span>
 
     <span class="n">MainViewModel</span> <span class="n">mMainViewModel</span><span class="o">;</span>
 
