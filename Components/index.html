@@ -312,8 +312,8 @@
           
             
   <li>
-    <a class="" title="常见问题" href="../常见问题/">
-      常见问题
+    <a class="" title="Q & A" href="../常见问题/">
+      Q & A
     </a>
     
   </li>
@@ -405,7 +405,8 @@
 
 
 <h2 id="controller">Controller</h2>
-<p>Controller的基本用法很简单，可以直接继承GeneralController，并通过泛型指定绑定的ViewModel</p>
+<p>Controller的职责监控各类交互/生命周期事件，并决定何时调用ViewModel的render。</p>
+<p>用法也很简单，可以直接继承GeneralController，并通过泛型指定绑定的ViewModel</p>
 <div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="kd">extends</span> <span class="n">GeneralController</span><span class="o">&lt;</span><span class="n">MainViewModel</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">bindEvents</span><span class="o">()</span> <span class="o">{</span>
     <span class="o">}</span>
