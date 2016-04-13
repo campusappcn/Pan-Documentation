@@ -1,5 +1,7 @@
 # Getting Started
 
+!!!info "可直接参考 [sample-github-users](https://github.com/campusappcn/Pan/tree/master/sample-github-users)"
+
 ## Pan依赖
 
 ```groovy
@@ -18,7 +20,7 @@
 首先，是轻量化的Activity代码，主要通过Pan的工厂方法with，得到ViewModel的实例，绑定ViewModel和Controller到Activity上。工厂方法with有很多重载，也可以传入使用实例化好的对象。
 
 ```Java
-public class MainActivity extends PanActivity {  //需要继承PanActivity，也可以自定义，见components章节
+public class MainActivity extends PanActivity {  //需要继承PanActivity，也可以自定义，见components/自定义Activity 章节
 
     MainViewModel mMainViewModel;
 

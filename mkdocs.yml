@@ -23,7 +23,7 @@ markdown_extensions:
 
 #防止javadoc的css被合并
 extra_css:
-  - ''
+  - 'css/custom.css'
 
 pages:
   - Home: index.md

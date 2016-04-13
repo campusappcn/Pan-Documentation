@@ -1,9 +1,10 @@
 # 集成官方的Data-Binding
 
+!!!info "可以直接参考 [sample-databinding](https://github.com/campusappcn/Pan/tree/master/sample-databinding)"
 
 官方的Data-Binding是一个避免了反射的MVVM的实现。不过说实话，个人觉得比较鸡肋。渲染逻辑在实际编写中，有大量的图片加载逻辑、自定义View逻辑等等，仍然无法完全用Xml的表达式来替代，而必须使用各类Attribute Setters, Converters。这意味着渲染逻辑会存在于**两个以上位置**，这将会对代码的可维护性造成极大的破坏，因为不同的程序员对一个渲染步骤是放在Java还是放在Xml中用表达式有着不同的理解。对于比Reactjs这种js框架，其渲染逻辑和样式Html是放在一处的，避免了这个问题。与此同时，Data-Binding也不能解决Activity的代码量过大的问题，只减少了部分代码，同时让一切变的更混乱了。
 
-Anyway，如果你确定想使用Data-Binding，Pan也仍然支持，稍加改造即可。完整的可运行Sample可以参考[源码中的sample-databinding模块](https://github.com/campusappcn/Pan/tree/master/sample-databinding)。
+Anyway，如果你确定想使用Data-Binding，Pan也仍然支持，稍加改造即可。
 
 首先，我们添加一个DataBindingViewModel，支持设置Data和其Binding：
 

@@ -177,7 +177,7 @@ Pan工厂会保证传入的GeneralViewModel将按照下列顺序初始化：
 
 <img style="max-width: 60%;" src="https://img.alicdn.com/imgextra/i4/56380417/TB2qwPDmpXXXXceXpXXXXXXXXXX_!!56380417.png" alt="Pan工厂的执行顺序">
 
-## 自定义PanActivity/PanFragment
+## 自定义Activity/Fragment
 
 由于Java的单继承特性，如果某个Activity已经继承了某个自定义的Activity，或者某个类库的Activity，将无法直接继承PanActivity/PanFragment。
 
