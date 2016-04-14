@@ -15,6 +15,7 @@ extra:
   # Valid values are: red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey and blue grey. The last three colors can only be used as a primary color.
     primary: 'grey'
     accent: 'cyan'
+  logo: 'img/logo.png'
 
 markdown_extensions:
   #https://pythonhosted.org/Markdown/extensions/admonition.html
