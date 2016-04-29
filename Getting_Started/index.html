@@ -322,7 +322,7 @@
     <span class="o">}</span>
 
     <span class="n">dependencies</span> <span class="o">{</span>
-        <span class="n">compile</span> <span class="s1">&#39;com.github.campusappcn:Pan:0.9.0&#39;</span>
+        <span class="n">compile</span> <span class="s1">&#39;com.github.campusappcn:Pan:0.9.2&#39;</span>
     <span class="o">}</span>
 </pre></div>
 
@@ -356,7 +356,7 @@
 <li>以v作为前缀的View对象</li>
 <li>以m作为前缀的ViewModel具体的字段</li>
 </ol>
-<p>render方法负责将ViewModel字段渲染到View上 </p>
+<p>render方法负责将ViewModel字段渲染到View上</p>
 <div class="code"><pre><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">)</span> <span class="c1">//可选，让ViewModel语义更明确。当需要自己实例化新View时必选。</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainViewModel</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span> <span class="o">{</span>
 
@@ -386,7 +386,7 @@ Controller通过泛型参数，与ViewModel实现绑定，可以处理两类事�
 <li>用户交互，通过bindEvents()方法实现，$vm为绑定的ViewModel对象</li>
 <li>所处Activity/Fragment的生命周期，通过实现接口（例如，OnResume）进行监听</li>
 </ol>
-<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="kd">extends</span> <span class="n">GeneralController</span><span class="o">&lt;</span><span class="n">MainViewModel</span><span class="o">&gt;</span> 
+<div class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="kd">extends</span> <span class="n">GeneralController</span><span class="o">&lt;</span><span class="n">MainViewModel</span><span class="o">&gt;</span>
         <span class="kd">implements</span> <span class="n">OnResume</span> <span class="o">{</span> <span class="c1">//以监听Activity的OnResume事件</span>
 
     <span class="nd">@Override</span>
