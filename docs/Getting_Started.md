@@ -11,7 +11,7 @@
 	}
 
 	dependencies {
-        compile 'com.github.campusappcn:Pan:0.9.0'
+        compile 'com.github.campusappcn:Pan:0.9.2'
 	}
 ```
 
@@ -48,7 +48,7 @@ How clean! 事实上，常见的Activity中需要实现的onResume等方法，�
 1. 以v作为前缀的View对象
 2. 以m作为前缀的ViewModel具体的字段
 
-render方法负责将ViewModel字段渲染到View上 
+render方法负责将ViewModel字段渲染到View上
 ```Java
 @Xml(R.layout.activity_main) //可选，让ViewModel语义更明确。当需要自己实例化新View时必选。
 public class MainViewModel extends GeneralViewModel {
@@ -80,7 +80,7 @@ Controller通过泛型参数，与ViewModel实现绑定，可以处理两类事�
 2. 所处Activity/Fragment的生命周期，通过实现接口（例如，OnResume）进行监听
 
 ```Java
-public class MainController extends GeneralController<MainViewModel> 
+public class MainController extends GeneralController<MainViewModel>
 		implements OnResume { //以监听Activity的OnResume事件
 
     @Override
