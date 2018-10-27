@@ -489,8 +489,8 @@
 当然Mosby也是支持不交给Activity的，用别的实现类；而Pan则是强制分离。</p>
 <div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldViewImpl</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span> <span class="kd">implements</span> <span class="n">HelloWorldView</span><span class="o">{</span>
 
-    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">greetingTextView</span><span class="o">)</span> <span class="n">TextView</span> <span class="n">vGreetingTextView</span><span class="o">;</span>
-    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">helloButton</span><span class="o">)</span> <span class="n">Button</span> <span class="n">vHelloBtn</span><span class="o">;</span>
+    <span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">greetingTextView</span><span class="o">)</span> <span class="n">TextView</span> <span class="n">vGreetingTextView</span><span class="o">;</span>
+    <span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">helloButton</span><span class="o">)</span> <span class="n">Button</span> <span class="n">vHelloBtn</span><span class="o">;</span>
 
     <span class="nd">@Override</span> <span class="kt">void</span> <span class="nf">showHello</span><span class="o">(</span><span class="n">String</span> <span class="n">greetingText</span><span class="o">){</span>
         <span class="n">greetingTextView</span><span class="o">.</span><span class="na">setTextColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>

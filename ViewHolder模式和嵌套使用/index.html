@@ -481,7 +481,7 @@
 <div class="codehilite"><pre><span></span><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">list</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListViewModel</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span><span class="o">{</span>
 
-    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">list</span><span class="o">)</span>
+    <span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">list</span><span class="o">)</span>
     <span class="kd">public</span> <span class="n">ListView</span> <span class="n">vListView</span><span class="o">;</span>
 
     <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">mDatas</span><span class="o">;</span>
@@ -522,7 +522,7 @@
 <div class="codehilite"><pre><span></span><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemViewModel</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span><span class="o">{</span>
 
-    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">text</span><span class="o">)</span>
+    <span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">text</span><span class="o">)</span>
     <span class="kd">public</span> <span class="n">TextView</span> <span class="n">vTextView</span><span class="o">;</span>
 
     <span class="kd">private</span> <span class="n">Data</span> <span class="n">mData</span><span class="o">;</span>

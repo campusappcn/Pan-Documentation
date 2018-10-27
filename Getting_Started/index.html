@@ -506,7 +506,10 @@
     <span class="o">}</span>
 
     <span class="n">dependencies</span> <span class="o">{</span>
-        <span class="n">compile</span> <span class="s1">&#39;com.github.campusappcn:Pan:0.9.2&#39;</span>
+        <span class="n">implementation</span> <span class="s1">&#39;com.github.campusappcn:Pan:0.9.8&#39;</span>
+
+        <span class="n">implementation</span> <span class="s1">&#39;com.jakewharton:butterknife:9.0.0-rc1&#39;</span>
+        <span class="n">annotationProcessor</span> <span class="s1">&#39;com.jakewharton:butterknife-compiler:9.0.0-rc1&#39;</span>
     <span class="o">}</span>
 </pre></div>
 
@@ -544,7 +547,7 @@
 <div class="codehilite"><pre><span></span><span class="nd">@Xml</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">)</span> <span class="c1">//可选，让ViewModel语义更明确。当需要自己实例化新View时必选。</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainViewModel</span> <span class="kd">extends</span> <span class="n">GeneralViewModel</span> <span class="o">{</span>
 
-    <span class="nd">@Bind</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">hello</span><span class="o">)</span> <span class="c1">//Butterknife</span>
+    <span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">hello</span><span class="o">)</span> <span class="c1">//Butterknife</span>
     <span class="n">Button</span> <span class="n">vHelloTv</span><span class="o">;</span>
 
     <span class="n">String</span> <span class="n">mHelloString</span><span class="o">;</span>
