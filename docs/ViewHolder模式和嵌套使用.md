@@ -19,7 +19,7 @@ Pan原生实现了ViewHolder模式，开发者无需自行绑定ViewHolder。
 @Xml(R.layout.list)
 public class ListViewModel extends GeneralViewModel{
 
-    @Bind(R.id.list)
+    @BindView(R.id.list)
     public ListView vListView;
 
     private List<Data> mDatas;
@@ -61,7 +61,7 @@ public class ListViewModel extends GeneralViewModel{
 @Xml(R.layout.item)
 public class ItemViewModel extends GeneralViewModel{
 
-    @Bind(R.id.text)
+    @BindView(R.id.text)
     public TextView vTextView;
 
     private Data mData;

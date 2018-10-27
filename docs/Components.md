@@ -19,7 +19,7 @@ render方法负责完成渲染操作，而rootView是当前渲染的最顶层的
 
 [GeneralViewModel](javadoc/cn/campusapp/pan/GeneralViewModel.html)提供了以下功能：
 
-1. @Bind注解自动注入View。（底层由[Butterknife](http://jakewharton.github.io/butterknife/)支持）
+1. @BindView注解自动注入View。（底层由[Butterknife](http://jakewharton.github.io/butterknife/)支持）
 2. 持有当前的Context，一定有Activity的引用，如果在Fragment中，则有Fragment的引用
 3. 支持绑定一个[GeneralController](javadoc/cn/campusapp/pan/GeneralController.html)
 

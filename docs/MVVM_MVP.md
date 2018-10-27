@@ -26,8 +26,8 @@ public interface HelloWorldView {
 ```Java
 public class HelloWorldViewImpl extends GeneralViewModel implements HelloWorldView{
 
-	@Bind(R.id.greetingTextView) TextView vGreetingTextView;
-	@Bind(R.id.helloButton) Button vHelloBtn;
+	@BindView(R.id.greetingTextView) TextView vGreetingTextView;
+	@BindView(R.id.helloButton) Button vHelloBtn;
 
 	@Override void showHello(String greetingText){
 		greetingTextView.setTextColor(Color.RED);

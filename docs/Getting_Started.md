@@ -11,7 +11,10 @@
 	}
 
 	dependencies {
-        compile 'com.github.campusappcn:Pan:0.9.2'
+        implementation 'com.github.campusappcn:Pan:0.9.8'
+
+        implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+        annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 	}
 ```
 
@@ -53,7 +56,7 @@ render方法负责将ViewModel字段渲染到View上
 @Xml(R.layout.activity_main) //可选，让ViewModel语义更明确。当需要自己实例化新View时必选。
 public class MainViewModel extends GeneralViewModel {
 
-    @Bind(R.id.hello) //Butterknife
+    @BindView(R.id.hello) //Butterknife
     Button vHelloTv;
 
     String mHelloString;
